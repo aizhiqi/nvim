@@ -95,12 +95,20 @@ map('n', '<leader>fb', ":Telescope buffers<CR>", opt)
 map('n', '<leader>fh', ":Telescope help_tags<CR>", opt)
 map('n', '<leader>fe', ":Telescope env<CR>", opt)
 map('n', '<leader>fc', ":Telescope commands<CR>", opt)
-map('n', '<leader>fs', ":Telescope symbols<CR>", opt)
+map('n', '<leader>fs', ":Telescope grep_string<CR>", opt)
 map('n', '<leader>fp', ":Telescope projects<CR>", opt)
+map('n', '<leader>fo', ":Telescope oldfiles<CR>", opt)
+map('n', '<leader>fk', ":Telescope keymaps<CR>", opt)
 pluginKeys.telescopeList = {
   i = {
     ["<C-j>"] = "move_selection_next",
     ["<C-k>"] = "move_selection_previous",
+    ["<C-v>"] = "select_horizontal",
+    ["<C-h>"] = "select_vertical",
+    ["<C-u>"] = "results_scrolling_up",
+    ["<C-d>"] = "results_scrolling_down",
+    ["<C-b>"] = "preview_scrolling_up",
+    ["<C-f>"] = "preview_scrolling_down",
     ["<Down>"] = "cycle_history_next",
     ["<Up>"] = "cycle_history_prev",
     ["<esc>"] = "close",
