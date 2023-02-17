@@ -1,6 +1,5 @@
 -- project file in :lua print(require("project_nvim.utils.path").historyfile)
 -- eg: ~/.local/share/nvim/project_nvim/project_history
-
 local status, project = pcall(require, "project_nvim")
 if not status then
   vim.notify("can't find project_nvim")

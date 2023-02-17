@@ -1,4 +1,10 @@
-require("mason").setup({
+local status, mason= pcall(require, "mason")
+if not status then
+  vim.notify("can't find mason")
+  return
+end
+
+mason.setup({
   ui = {
       icons = {
           package_installed = "✓",
@@ -8,14 +14,20 @@ require("mason").setup({
   }
 })
 
-require("mason-lspconfig").setup({
+local status, mason_lspconfig= pcall(require, "mason_lspconfig")
+if not status then
+  vim.notify("can't find mason_lspconfig")
+  return
+end
+
+mason_lspconfig.setup({
   ensure_installed = { "lua_ls", "awk_ls", "bashls", "rust_analyzer", "clangd", "jsonls", "tsserver", "marksman", "jedi_language_server" },
 
   -- auto install Language Servers
   automatic_installation = true,
 })
 
-require("mason-lspconfig").setup_handlers {
+mason_lspconfig.setup_handlers {
   -- default handler
   function (server_name) -- default handler (optional)
       require("lspconfig")[server_name].setup {

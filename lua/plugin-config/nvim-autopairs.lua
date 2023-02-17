@@ -1,4 +1,3 @@
--- https://github.com/windwp/nvim-autopairs
 local status, autopairs = pcall(require, "nvim-autopairs")
 if not status then
   vim.notify("can't find nvim-autopairs")

@@ -11,7 +11,11 @@ for type, icon in pairs(signs) do
 end
 
 -- lspkind
-local lspkind = require("lspkind")
+local status, lspkind= pcall(require, "lspkind")
+if not status then
+  vim.notify("can't find kspkind")
+  return
+end
 lspkind.init({
   -- default: true
   -- with_text = true,
@@ -57,8 +61,13 @@ lspkind.init({
   },
 })
 
-local lspsaga = require("lspsaga")
-lspsaga.setup({ -- defaults ...
+local status, lspsaga= pcall(require, "lspsaga")
+if not status then
+  vim.notify("can't find lspsaga")
+  return
+end
+lspsaga.setup({ 
+  -- defaults ...
   debug = false,
   use_saga_diagnostic_sign = true,
   -- diagnostic sign
