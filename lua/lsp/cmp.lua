@@ -1,4 +1,4 @@
-local status, cmp= pcall(require, "cmp")
+local status, cmp = pcall(require, "cmp")
 if not status then
   vim.notify("can't find cmp")
   return

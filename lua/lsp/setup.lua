@@ -1,6 +1,8 @@
-local status, mason= pcall(require, "mason")
+local status, mason, mason_lspconfig = pcall(function()
+  return require("mason"), require("mason-lspconfig")
+end)
 if not status then
-  vim.notify("can't find mason")
+  vim.notify("can't find mason or mason-lspconfig")
   return
 end
 
@@ -13,12 +15,6 @@ mason.setup({
       }
   }
 })
-
-local status, mason_lspconfig= pcall(require, "mason_lspconfig")
-if not status then
-  vim.notify("can't find mason_lspconfig")
-  return
-end
 
 mason_lspconfig.setup({
   ensure_installed = { "lua_ls", "awk_ls", "bashls", "rust_analyzer", "clangd", "jsonls", "tsserver", "marksman", "jedi_language_server" },
