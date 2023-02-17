@@ -17,7 +17,7 @@ mason.setup({
 })
 
 mason_lspconfig.setup({
-  ensure_installed = { "lua_ls", "awk_ls", "bashls", "rust_analyzer", "clangd", "jsonls", "tsserver", "marksman", "jedi_language_server" },
+  ensure_installed = { "lua_ls", "awk_ls", "bashls", "rust_analyzer", "clangd", "jsonls", "marksman", "jedi_language_server", "csharp_ls" },
 
   -- auto install Language Servers
   automatic_installation = true,
