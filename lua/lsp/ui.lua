@@ -10,12 +10,32 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+
+local status1, fidget = require("fidget")
+if status1 then
+  require("fidget").setup({
+    text = {
+      spinner = "zip", -- animation shown when tasks are ongoing
+      done = "✔", -- character shown when all tasks are complete
+      commenced = "Started", -- message shown when task starts
+      completed = "Completed", -- message shown when task completes
+    },
+    sources = {
+      --[[ ["null-ls"] = {
+        ignore = true,
+      }, ]]
+    },
+  })
+else
+  vim.notify("can't find plugin: fidget")
+end
+
 -- lspkind && lspsaga
-local status, lspkind, lspsaga= pcall(function()
+local status2, lspkind, lspsaga= pcall(function()
   return require("lspkind"), require("lspsaga")
 end)
-if not status then
-  vim.notify("can't find kspkind or lspsaga")
+if not status2 then
+  vim.notify("can't find plugin kspkind or lspsaga")
   return
 end
 
@@ -120,6 +140,7 @@ lspsaga.setup({
 
 local M = {}
 -- customized ui for cmp.lua 
+
 M.formatting = {
   format = lspkind.cmp_format({
     mode = "symbol_text",

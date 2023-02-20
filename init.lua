@@ -1,3 +1,6 @@
+require("global")
+G.lsp_ui = true
+
 -- base plugin
 require("basic")
 require("keybindings")
@@ -14,14 +17,12 @@ require("plugin-config.project")
 -- code analyze and highlight
 require("plugin-config.nvim-treesitter")
 require("plugin-config.indent-blankline")
-require("plugin-config.fidget")
 require("plugin-config.nvim-autopairs")
 require("plugin-config.comment")
 
 -- LSP
 require("lsp.setup")
 require("lsp.cmp")
-require("lsp.ui")
 
 -- Tools
 require("plugin-config.gitsigns")

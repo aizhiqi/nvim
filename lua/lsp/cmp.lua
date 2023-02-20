@@ -4,6 +4,25 @@ if not status then
   return
 end
 
+local formatting
+if G.lsp_ui then
+  formatting = require("lsp.ui").formatting
+else
+  formatting = {
+    format = function(entry, vim_item)
+      if not G.lsp_ui then
+        -- Kind 
+        vim_item.kind = string.format('%s', vim_item.kind)
+        -- Source
+        vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
+        -- Width
+        vim_item.abbr = string.sub(vim_item.abbr, 1, 50)
+        return vim_item
+      end
+    end
+  }
+end
+
 cmp.setup({
   -- config engine for snippet
   snippet = {
@@ -38,8 +57,9 @@ cmp.setup({
 
   -- key mapping
   mapping = require("keybindings").cmp(cmp),
+
   -- show icon use lspkind-nvim
-  formatting = require("lsp.ui").formatting,
+  formatting = formatting,
 })
 
 -- Use buffer source for `/`.
