@@ -1,5 +1,5 @@
 require("global")
-G.lsp_ui = true
+G.lsp_ui = false
 
 -- base plugin
 require("basic")
@@ -9,24 +9,24 @@ require("colorscheme")
 require("autocmds")
 
 -- ui componets
-require("plugin-config.nvim-tree")
-require("plugin-config.lualine")
-require("plugin-config.telescope")
-require("plugin-config.project")
+require("ui.nvim-tree")
+require("ui.lualine")
+require("ui.telescope")
+require("ui.project")
 
 -- code analyze and highlight
-require("plugin-config.nvim-treesitter")
-require("plugin-config.indent-blankline")
-require("plugin-config.nvim-autopairs")
-require("plugin-config.comment")
+require("syntax.nvim-treesitter")
+require("syntax.indent-blankline")
+require("syntax.nvim-autopairs")
+require("syntax.comment")
 
 -- LSP
 require("lsp.setup")
 require("lsp.cmp")
 
 -- Tools
-require("plugin-config.gitsigns")
-require("plugin-config.toggleterm")
+require("tools.gitsigns")
+require("tools.toggleterm")
 
 -- debugger
 require("dap.vimspector")

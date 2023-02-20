@@ -81,13 +81,14 @@ packer.startup({
     use("hrsh7th/cmp-cmdline") -- { name = 'cmdline' }
     use("hrsh7th/cmp-nvim-lsp-signature-help") -- { name = 'nvim_lsp_signature_help' }
     use("rafamadriz/friendly-snippets")
-    ---- UI for lsp
+
 if G.lsp_ui then
+    ---- UI for lsp
     use("j-hui/fidget.nvim")
     use("onsails/lspkind-nvim")
     use("tami5/lspsaga.nvim")
 end
-    ---- use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
+
     -- Lua nvim code assistant
     use("folke/neodev.nvim")
     -- JSON assistant
