@@ -1,5 +1,5 @@
 require("global")
-G.lsp_ui = false
+G.lsp_ui = true
 
 -- base plugin
 require("basic")
@@ -27,6 +27,7 @@ require("lsp.cmp")
 -- Tools
 require("tools.gitsigns")
 require("tools.toggleterm")
+require("tools.hop")
 
 -- debugger
 require("dap.vimspector")

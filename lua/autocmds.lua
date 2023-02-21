@@ -32,28 +32,33 @@ autocmd("FileType", {
   group = myAutoGroup,
   pattern = "*.json",
   callback = function()
-    require("schemastore").setup()
+    require("schemastore").setup({
+      vim.notify("schemastore loaded")
+    })
+  end,
+})
+autocmd("FileType", {
+  group = myAutoGroup,
+  pattern = "*.rs",
+  callback = function()
+    require("rust-tools").setup({
+      vim.notify("rust-tools loaded")
+    })
   end,
 })
 autocmd("FileType", {
   group = myAutoGroup,
   pattern = { "*.h", "*.hpp", "*.cc", "*.c", "*.cpp" },
   callback = function()
-    require("rust-tools").setup()
   end,
 })
 autocmd("FileType", {
   group = myAutoGroup,
-  pattern = { "*.h", "*.hpp", "*.cc", "*.c", "*.cpp" },
+  pattern = "*.lua",
   callback = function()
-
-  end,
-})
-autocmd("FileType", {
-  group = myAutoGroup,
-  pattern = { "*.lua" },
-  callback = function()
-    require("neodev").setup()
+    require("neodev").setup({
+      vim.notify("neodev loaded")
+    })
     --[[ vim.lsp.start({
       name = "lua-language-server",
       cmd = { "lua-language-server" },

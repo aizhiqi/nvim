@@ -100,6 +100,7 @@ end
     -- git
     use({ "lewis6991/gitsigns.nvim" })
     -- toggle term
+    use { "phaazon/hop.nvim", branch = "v2"}
     use({ "akinsho/toggleterm.nvim" })
 
     ---------------------- debugger -------------------------

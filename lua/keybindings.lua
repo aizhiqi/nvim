@@ -20,8 +20,8 @@ local map = vim.api.nvim_set_keymap
 
 --------------------------------------------------------------------
 -- quit
-map("n", "<leader>q", ":q<CR>", opt)
-map("n", "<leader>w", ":w<CR>", opt)
+map("n", "<leader>q", "<cmd>q<CR>", opt)
+map("n", "<leader>w", "<cmd>w<CR>", opt)
 
 -- don't copy text in visual mode after paste
 map("v", "p", '"_dP', opt)
@@ -33,39 +33,39 @@ map("n", "<leader>k", "<C-w>k", opt)
 map("n", "<leader>l", "<C-w>l", opt)
 
 -- adjust window size
-map("n", "<leader><S-Left>", ":vertical resize -10<CR>", opt)
-map("n", "<leader><S-Right>", ":vertical resize +10<CR>", opt)
-map("n", "<leader><S-Down>", ":resize +10<CR>", opt)
-map("n", "<leader><S-Up>", ":resize -10<CR>", opt)
+map("n", "<leader><S-Left>", "<cmd>vertical resize -10<CR>", opt)
+map("n", "<leader><S-Right>", "<cmd>vertical resize +10<CR>", opt)
+map("n", "<leader><S-Down>", "<cmd>resize +10<CR>", opt)
+map("n", "<leader><S-Up>", "<cmd>resize -10<CR>", opt)
 
 -- Tab
-map("n", "<leader>th", ":tabprevious<CR>", opt)
-map("n", "<leader>tl", ":tabnext<CR>", opt)
-map("n", "<leader>tn", ":tabnew<CR>", opt)
-map("n", "<leader>td", ":tabclose<CR>", opt)
+map("n", "<leader>th", "<cmd>tabprevious<CR>", opt)
+map("n", "<leader>tl", "<cmd>tabnext<CR>", opt)
+map("n", "<leader>tn", "<cmd>tabnew<CR>", opt)
+map("n", "<leader>td", "<cmd>tabclose<CR>", opt)
 
 -- Buffer
-map("n", "<leader>bh", ":bprevious<CR>", opt)
-map("n", "<leader>bl", ":bnext<CR>", opt)
-map("n", "<leader>bn", ":badd", opt)
-map("n", "<leader>bd", ":bdelete<CR>", opt)
+map("n", "<leader>bh", "<cmd>bprevious<CR>", opt)
+map("n", "<leader>bl", "<cmd>bnext<CR>", opt)
+map("n", "<leader>bn", "<cmd>badd", opt)
+map("n", "<leader>bd", "<cmd>bdelete<CR>", opt)
 
 -- clear hight light
-map("n", "<leader><CR>", ":nohlsearch<CR>", opt)
+map("n", "<leader><CR>", "<cmd>nohlsearch<CR>", opt)
 
 -- Switch CWD to the directory of the open buffer
-map("n", "<leader>cd", ":cd %:p:h<CR>:pwd<CR>", opt)
+map("n", "<leader>cd", "<cmd>cd %:p:h<CR>:pwd<CR>", opt)
 -- Switch CWD to the root directory
 -- map("n", "<Leader>cdr :execute 'cd '.FindRoot() <CR>:pwd<cr>", opt>
 -- Switch CWD to the home directory
-map("n", "<leader>cdh", ":cd $HOME<CR>:pwd<CR>", opt)
+map("n", "<leader>cdh", "<cmd>cd $HOME<CR>:pwd<CR>", opt)
 
 --------------------------------------------------------------------
 -- keybindings for plugin
 local pluginKeys = {}
 
 -- nvim-tree
-map("n", "<leader>e", ":NvimTreeToggle<CR>", opt)
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opt)
 pluginKeys.nvimTreeList = {
   -- open item
   { key = { "o", "<2-LeftMouse>" }, action = "edit" },
@@ -89,16 +89,16 @@ pluginKeys.nvimTreeList = {
 }
 
 -- Telescope
-map("n", "<leader>ff", ":Telescope find_files<CR>", opt)
-map('n', '<leader>fg', ":Telescope live_grep<CR>", opt)
-map('n', '<leader>fb', ":Telescope buffers<CR>", opt)
-map('n', '<leader>fh', ":Telescope help_tags<CR>", opt)
-map('n', '<leader>fe', ":Telescope env<CR>", opt)
-map('n', '<leader>fc', ":Telescope commands<CR>", opt)
-map('n', '<leader>fs', ":Telescope grep_string<CR>", opt)
-map('n', '<leader>fp', ":Telescope projects<CR>", opt)
-map('n', '<leader>fo', ":Telescope oldfiles<CR>", opt)
-map('n', '<leader>fk', ":Telescope keymaps<CR>", opt)
+map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opt)
+map('n', '<leader>fg', "<cmd>Telescope live_grep<CR>", opt)
+map('n', '<leader>fb', "<cmd>Telescope buffers<CR>", opt)
+map('n', '<leader>fh', "<cmd>Telescope help_tags<CR>", opt)
+map('n', '<leader>fe', "<cmd>Telescope env<CR>", opt)
+map('n', '<leader>fc', "<cmd>Telescope commands<CR>", opt)
+map('n', '<leader>fs', "<cmd>Telescope grep_string<CR>", opt)
+map('n', '<leader>fp', "<cmd>Telescope projects<CR>", opt)
+map('n', '<leader>fo', "<cmd>Telescope oldfiles<CR>", opt)
+map('n', '<leader>fk', "<cmd>Telescope keymaps<CR>", opt)
 pluginKeys.telescopeList = {
   i = {
     ["<C-j>"] = "move_selection_next",
@@ -128,8 +128,8 @@ map("n", "cc", "cc", { noremap = false })
 map("v", "cc", "cb", { noremap = false })
 
 -- treesitter code fold
-map("n", "zz", ":foldclose<CR>", opt)
-map("n", "Z", ":foldopen<CR>", opt)
+map("n", "zz", "<cmd>foldclose<CR>", opt)
+map("n", "Z", "<cmd>foldopen<CR>", opt)
 
 -- lsp keybindings in callback function
 pluginKeys.mapLSP = function(mapbuf)
@@ -179,14 +179,14 @@ end
 -- vimspector
 pluginKeys.mapVimspector = function()
   -- 开始
-  map("n", "<leader>dd", ":call vimspector#Launch()<CR>", opt)
+  map("n", "<leader>dd", "<cmd>call vimspector#Launch()<CR>", opt)
   -- 结束
-  map("n", "<Leader>de", ":call vimspector#Reset()<CR>", opt)
+  map("n", "<Leader>de", "<cmd>call vimspector#Reset()<CR>", opt)
   -- 继续
-  map("n", "<Leader>dc", ":call vimspector#Continue()<CR>", opt)
+  map("n", "<Leader>dc", "<cmd>call vimspector#Continue()<CR>", opt)
   -- 设置断点
-  map("n", "<Leader>dt", ":call vimspector#ToggleBreakpoint()<CR>", opt)
-  map("n", "<Leader>dT", ":call vimspector#ClearBreakpoints()<CR>", opt)
+  map("n", "<Leader>dt", "<cmd>call vimspector#ToggleBreakpoint()<CR>", opt)
+  map("n", "<Leader>dT", "<cmd>call vimspector#ClearBreakpoints()<CR>", opt)
   --  stepOver, stepOut, stepInto
   map("n", "<leader>dj", "<Plug>VimspectorStepOver", opt)
   map("n", "<leader>dk", "<Plug>VimspectorStepOut", opt)
@@ -265,5 +265,15 @@ pluginKeys.mapToggleTerm = function(toggleterm)
   vim.keymap.set({ "n", "t" }, "<leader>tl", toggleterm.toggleL)
   vim.keymap.set({ "n", "t" }, "<leader>tj", toggleterm.toggleJ)
 end
+
+-- hop (move cursor)
+map("n", "mj", "<cmd>HopLineBC<CR>", opt)
+map("v", "mj", "<cmd>HopLineBC<CR>", opt)
+map("n", "mk", "<cmd>HopLineAC<CR>", opt)
+map("v", "mk", "<cmd>HopLineAC<CR>", opt)
+map("n", "mh", "<cmd>HopWordCurrentLineBC<CR>", opt)
+map("v", "mh", "<cmd>HopWordCurrentLineBC<CR>", opt)
+map("n", "ml", "<cmd>HopWordCurrentLineAC<CR>", opt)
+map("v", "ml", "<cmd>HopWordCurrentLineAC<CR>", opt)
 
 return pluginKeys
