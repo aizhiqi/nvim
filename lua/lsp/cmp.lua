@@ -11,7 +11,7 @@ else
   formatting = {
     format = function(entry, vim_item)
       if not G.lsp_ui then
-        -- Kind 
+        -- Kind
         vim_item.kind = string.format('%s', vim_item.kind)
         -- Source
         vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
@@ -54,10 +54,8 @@ cmp.setup({
     -- -- For snippy users.
     -- { name = 'snippy' },
   }, { { name = "path" } }),
-
   -- key mapping
   mapping = require("keybindings").cmp(cmp),
-
   -- show icon use lspkind-nvim
   formatting = formatting,
 })

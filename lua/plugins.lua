@@ -84,7 +84,6 @@ packer.startup({
 
 if G.lsp_ui then
     ---- UI for lsp
-    use("j-hui/fidget.nvim")
     use("onsails/lspkind-nvim")
     use("tami5/lspsaga.nvim")
 end
