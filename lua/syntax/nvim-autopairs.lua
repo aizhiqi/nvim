@@ -3,6 +3,7 @@ if not status then
   vim.notify("can't find nvim-autopairs")
   return
 end
+
 autopairs.setup({
   check_ts = true,
   ts_config = {
@@ -11,6 +12,7 @@ autopairs.setup({
     java = false, -- don't check treesitter on java
   },
 })
+
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local cmp = require("cmp")

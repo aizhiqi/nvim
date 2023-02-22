@@ -7,7 +7,7 @@ end
 treesitter.setup({
   -- Install language parser
   -- :TSInstallInfo show the languages have been supported
-  ensure_installed = {"awk", "c_sharp", "bash", "c", "cpp", "lua", "vim", "json", "help" },
+  ensure_installed = { "rust", "awk", "c_sharp", "bash", "c", "cpp", "lua", "vim", "json", "help" },
   -- ensure_installed = "maintained",
 
   -- enable code highlight
@@ -15,14 +15,13 @@ treesitter.setup({
     enable = true,
     additional_vim_regex_highlighting = false,
   },
-
   auto_install = true,
-
   -- enable indent
   indent = {
     enable = true,
   },
 })
+
 -- enable code folding
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"

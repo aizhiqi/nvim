@@ -9,7 +9,7 @@ local list_keys = require("keybindings").nvimTreeList
 nvim_tree.setup({
   -- disable buildin netrw
   disable_netrw = true,
-  -- show icon for git 
+  -- show icon for git
   git = {
     enable = true,
   },
@@ -22,7 +22,7 @@ nvim_tree.setup({
   filters = {
     -- hide dofiles
     dotfiles = true,
-    -- hide node_modules directory 
+    -- hide node_modules directory
     -- custom = { "node_modules" },
   },
   view = {
@@ -43,11 +43,10 @@ nvim_tree.setup({
     open_file = {
       -- auto adjust size when the first time show
       resize_window = true,
-      -- auto close tree after file opend 
+      -- auto close tree after file opend
       quit_on_open = false,
     },
   },
-
   -- wsl install -g wsl-open
   -- https://github.com/4U6U57/wsl-open/
   system_open = {

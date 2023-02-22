@@ -30,7 +30,7 @@ end
 
 packer.startup({
   function(use)
-    -- Packer can update self 
+    -- Packer can update self
     use("wbthomason/packer.nvim")
     -------------------------- plugins -------------------------------------------
     ----------------------- colorschemes --------------------
@@ -82,12 +82,11 @@ packer.startup({
     use("hrsh7th/cmp-nvim-lsp-signature-help") -- { name = 'nvim_lsp_signature_help' }
     use("rafamadriz/friendly-snippets")
 
-if G.lsp_ui then
-    ---- UI for lsp
-    use("j-hui/fidget.nvim")
-    use("onsails/lspkind-nvim")
-    use("tami5/lspsaga.nvim")
-end
+    if G.lsp_ui then
+      ---- UI for lsp
+      use("onsails/lspkind-nvim")
+      use("tami5/lspsaga.nvim")
+    end
 
     -- Lua nvim code assistant
     use("folke/neodev.nvim")
@@ -100,7 +99,7 @@ end
     -- git
     use({ "lewis6991/gitsigns.nvim" })
     -- toggle term
-    use { "phaazon/hop.nvim", branch = "v2"}
+    use { "phaazon/hop.nvim", branch = "v2" }
     use({ "akinsho/toggleterm.nvim" })
 
     ---------------------- debugger -------------------------
@@ -135,5 +134,3 @@ end
     },
   },
 })
-
-

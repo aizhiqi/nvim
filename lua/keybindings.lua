@@ -69,23 +69,23 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opt)
 pluginKeys.nvimTreeList = {
   -- open item
   { key = { "o", "<2-LeftMouse>" }, action = "edit" },
-  { key = "vs", action = "vsplit" },
-  { key = "sp", action = "split" },
-  { key = "i", action = "toggle_ignored" },
-  { key = ".", action = "toggle_dotfiles" },
-  { key = "R", action = "refresh" },
+  { key = "vs",                     action = "vsplit" },
+  { key = "sp",                     action = "split" },
+  { key = "i",                      action = "toggle_ignored" },
+  { key = ".",                      action = "toggle_dotfiles" },
+  { key = "R",                      action = "refresh" },
   -- file operation
-  { key = "n", action = "create" },
-  { key = "d", action = "remove" },
-  { key = "m", action = "rename" },
-  { key = "x", action = "cut" },
-  { key = "y", action = "copy" },
-  { key = "p", action = "paste" },
-  { key = "cp", action = "copy_absolute_path" },
+  { key = "n",                      action = "create" },
+  { key = "d",                      action = "remove" },
+  { key = "m",                      action = "rename" },
+  { key = "x",                      action = "cut" },
+  { key = "y",                      action = "copy" },
+  { key = "p",                      action = "paste" },
+  { key = "cp",                     action = "copy_absolute_path" },
   -- enter sub directory
-  { key = { "]" }, action = "cd" },
+  { key = { "]" },                  action = "cd" },
   -- enter parent directory
-  { key = { "[" }, action = "dir_up" },
+  { key = { "[" },                  action = "dir_up" },
 }
 
 -- Telescope
@@ -172,7 +172,6 @@ pluginKeys.mapLSP = function(mapbuf)
     -- mapbuf('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
     -- mapbuf('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
     -- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
-
   end
 end
 
@@ -193,7 +192,7 @@ pluginKeys.mapVimspector = function()
   map("n", "<leader>dl", "<Plug>VimspectorStepInto", opt)
 end
 
--- nvim-cmp 
+-- nvim-cmp
 pluginKeys.cmp = function(cmp)
   local feedkey = function(key, mode)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
@@ -219,7 +218,7 @@ pluginKeys.cmp = function(cmp)
     }),
     -- ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     -- scroll
-    ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+    ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs( -4), { "i", "c" }),
     ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     -- snippets jump
     ["<C-l>"] = cmp.mapping(function(_)
@@ -228,11 +227,10 @@ pluginKeys.cmp = function(cmp)
       end
     end, { "i", "s" }),
     ["<C-h>"] = cmp.mapping(function()
-      if vim.fn["vsnip#jumpable"](-1) == 1 then
+      if vim.fn["vsnip#jumpable"]( -1) == 1 then
         feedkey("<Plug>(vsnip-jump-prev)", "")
       end
     end, { "i", "s" }),
-
     -- super Tab
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -245,11 +243,10 @@ pluginKeys.cmp = function(cmp)
         fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
       end
     end, { "i", "s" }),
-
     ["<S-Tab>"] = cmp.mapping(function()
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+      elseif vim.fn["vsnip#jumpable"]( -1) == 1 then
         feedkey("<Plug>(vsnip-jump-prev)", "")
       end
     end, { "i", "s" }),
@@ -258,8 +255,8 @@ pluginKeys.cmp = function(cmp)
 end
 
 
--- toggleterm 
--- <leader>tf float window; <leader>tl left window; <leader>tj bottem window 
+-- toggleterm
+-- <leader>tf float window; <leader>tl left window; <leader>tj bottem window
 pluginKeys.mapToggleTerm = function(toggleterm)
   vim.keymap.set({ "n", "t" }, "<leader>tf", toggleterm.toggleF)
   vim.keymap.set({ "n", "t" }, "<leader>tl", toggleterm.toggleL)

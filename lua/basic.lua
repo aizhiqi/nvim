@@ -18,7 +18,7 @@ vim.o.tabstop = 2
 vim.bo.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftround = true
--- move lenght when use >> << 
+-- move lenght when use >> <<
 vim.o.shiftwidth = 2
 vim.bo.shiftwidth = 2
 -- use bank insted of tab
@@ -44,7 +44,7 @@ vim.bo.autoread = true
 vim.wo.wrap = false
 -- cusor auto step to another line use <Left><Right> to line of end
 vim.o.whichwrap = "<,>,[,]"
--- buffer can be hidden 
+-- buffer can be hidden
 vim.o.hidden = true
 -- enable mouse in vim
 vim.o.mouse = "a"

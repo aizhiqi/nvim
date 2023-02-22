@@ -5,7 +5,7 @@ if not status then
 end
 
 gitsigns.setup({
-  -- icon A means add，C means modified，D means removed 
+  -- icon A means add，C means modified，D means removed
   signs = {
     add = { hl = "GitSignsAdd", text = "A|", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
     change = { hl = "GitSignsChange", text = "C|", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
