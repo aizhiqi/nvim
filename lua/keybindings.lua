@@ -73,7 +73,7 @@ pluginKeys.nvimTreeList = {
   { key = "sp",                     action = "split" },
   { key = "i",                      action = "toggle_ignored" },
   { key = ".",                      action = "toggle_dotfiles" },
-  { key = "R",                      action = "refresh" },
+  { key = "r",                      action = "refresh" },
   -- file operation
   { key = "n",                      action = "create" },
   { key = "d",                      action = "remove" },
@@ -124,25 +124,25 @@ pluginKeys.comment = {
     block = "cb",
   },
 }
-map("n", "cc", "cc", { noremap = false })
-map("v", "cc", "cb", { noremap = false })
+map("n", "<leader>cc", "cc", { noremap = false })
+map("v", "<leader>cc", "cb", { noremap = false })
 
 -- treesitter code fold
-map("n", "zz", "<cmd>foldclose<CR>", opt)
-map("n", "Z", "<cmd>foldopen<CR>", opt)
+map("n", "<leader>zz", "<cmd>foldclose<CR>", opt)
+map("n", "<leader>Z", "<cmd>foldopen<CR>", opt)
 
 -- lsp keybindings in callback function
 pluginKeys.mapLSP = function(mapbuf)
   if G.lsp_ui then
     -- rename
-    mapbuf("n", "rn", "<cmd>Lspsaga rename<CR>", opt)
-    mapbuf("n", "ca", "<cmd>Lspsaga code_action<CR>", opt)
-    mapbuf('n', 'gd', '<cmd>Lspsaga preview_definition<CR>', opt)
-    mapbuf("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opt)
-    mapbuf("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
-    mapbuf("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
-    mapbuf("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
-    mapbuf("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
+    mapbuf("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opt)
+    mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
+    mapbuf('n', '<leader>df', '<cmd>Lspsaga preview_definition<CR>', opt)
+    mapbuf("n", "<leader>ho", "<cmd>Lspsaga hover_doc<cr>", opt)
+    mapbuf("n", "<leader>rf", "<cmd>Lspsaga lsp_finder<CR>", opt)
+    mapbuf("n", "<leader>of", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
+    mapbuf("n", "<leader>dn", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
+    mapbuf("n", "<leader>dp", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
     -- mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
     -- 未用
     -- mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
@@ -154,14 +154,14 @@ pluginKeys.mapLSP = function(mapbuf)
     -- mapbuf('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
     -- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
   else
-    mapbuf("n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
-    mapbuf("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
-    mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
-    mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
-    mapbuf("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
-    mapbuf("n", "gp", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
-    mapbuf("n", "gj", "<cmd>lua vim.diagnostic.goto_next()<CR>", opt)
-    mapbuf("n", "gk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opt)
+    mapbuf("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
+    mapbuf("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
+    mapbuf("n", "<leader>df", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
+    mapbuf("n", "<leader>ho", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
+    mapbuf("n", "<leader>rf", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
+    mapbuf("n", "<leader>of", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
+    mapbuf("n", "<leader>dn", "<cmd>lua vim.diagnostic.goto_next()<CR>", opt)
+    mapbuf("n", "<leader>dp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opt)
     -- mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
     -- 未用
     -- mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
