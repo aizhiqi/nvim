@@ -4,9 +4,9 @@ vim.o.fileencoding = "utf-8"
 -- ensure 8 line can be see when use jkhl
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
--- don't use relativenumber
+-- use relativenumber
 vim.wo.number = true
-vim.wo.relativenumber = false
+vim.wo.relativenumber = true 
 -- highlight current line
 vim.wo.cursorline = true
 -- show left icon column
