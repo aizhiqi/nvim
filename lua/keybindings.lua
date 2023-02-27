@@ -47,7 +47,7 @@ map("n", "<leader>td", "<cmd>tabclose<CR>", opt)
 -- Buffer
 map("n", "<leader>bh", "<cmd>bprevious<CR>", opt)
 map("n", "<leader>bl", "<cmd>bnext<CR>", opt)
-map("n", "<leader>bn", "<cmd>badd", opt)
+map("n", "<leader>bn", "<cmd>enew<CR>", opt)
 map("n", "<leader>bd", "<cmd>bdelete<CR>", opt)
 
 -- clear hight light
@@ -258,9 +258,7 @@ end
 -- toggleterm
 -- <leader>tf float window; <leader>tl left window; <leader>tj bottem window
 pluginKeys.mapToggleTerm = function(toggleterm)
-  vim.keymap.set({ "n", "t" }, "<leader>tf", toggleterm.toggleF)
-  vim.keymap.set({ "n", "t" }, "<leader>tl", toggleterm.toggleL)
-  vim.keymap.set({ "n", "t" }, "<leader>tj", toggleterm.toggleJ)
+  vim.keymap.set({ "n", "t" }, "<leader>tt", toggleterm.toggleJ)
 end
 
 -- hop (move cursor)
