@@ -173,23 +173,24 @@ pluginKeys.mapLSP = function(mapbuf)
     -- mapbuf('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
     -- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
   end
+  mapbuf("n", "<leader>dd", "<cmd>Telescope diagnostics<CR>", opt)
 end
 
 -- vimspector
 pluginKeys.mapVimspector = function()
   -- 开始
-  map("n", "<leader>dd", "<cmd>call vimspector#Launch()<CR>", opt)
-  -- 结束
-  map("n", "<Leader>de", "<cmd>call vimspector#Reset()<CR>", opt)
-  -- 继续
-  map("n", "<Leader>dc", "<cmd>call vimspector#Continue()<CR>", opt)
-  -- 设置断点
-  map("n", "<Leader>dt", "<cmd>call vimspector#ToggleBreakpoint()<CR>", opt)
-  map("n", "<Leader>dT", "<cmd>call vimspector#ClearBreakpoints()<CR>", opt)
-  --  stepOver, stepOut, stepInto
-  map("n", "<leader>dj", "<Plug>VimspectorStepOver", opt)
-  map("n", "<leader>dk", "<Plug>VimspectorStepOut", opt)
-  map("n", "<leader>dl", "<Plug>VimspectorStepInto", opt)
+  --map("n", "<leader>dl", "<cmd>call vimspector#Launch()<CR>", opt)
+  ---- 结束
+  --map("n", "<Leader>dr", "<cmd>call vimspector#Reset()<CR>", opt)
+  ---- 继续
+  --map("n", "<Leader>dc", "<cmd>call vimspector#Continue()<CR>", opt)
+  ---- 设置断点
+  --map("n", "<Leader>db", "<cmd>call vimspector#ToggleBreakpoint()<CR>", opt)
+  --map("n", "<Leader>dT", "<cmd>call vimspector#ClearBreakpoints()<CR>", opt)
+  ----  stepOver, stepOut, stepInto
+  --map("n", "<leader>dj", "<Plug>VimspectorStepOver", opt)
+  --map("n", "<leader>dk", "<Plug>VimspectorStepOut", opt)
+  --map("n", "<leader>dl", "<Plug>VimspectorStepInto", opt)
 end
 
 -- nvim-cmp
