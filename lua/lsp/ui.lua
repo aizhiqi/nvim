@@ -66,57 +66,141 @@ lspkind.init({
 })
 
 lspsaga.setup({
-  -- defaults ...
-  debug = false,
-  use_saga_diagnostic_sign = true,
-  -- diagnostic sign
-  error_sign = "",
-  warn_sign = "",
-  hint_sign = "",
-  infor_sign = "",
-  diagnostic_header_icon = "   ",
-  -- code action title icon
-  code_action_icon = " ",
-  code_action_prompt = {
-    enable = true,
-    sign = true,
-    sign_priority = 40,
-    virtual_text = true,
+  -- ui
+  ui = {
+    title = true,
+    border = "single",
+    winblend = 0,
+    expand = "",
+    collapse = "",
+    code_action = "💡",
+    incoming = " ",
+    outgoing = " ",
+    hover = ' ',
+    kind = {},
   },
-  finder_definition_icon = "  ",
-  finder_reference_icon = "  ",
-  max_preview_lines = 10,
-  finder_action_keys = {
-    -- open = "o",
-    open = "<CR>",
-    vsplit = "s",
-    split = "i",
-    -- quit = "q",
-    quit = "<ESC>",
+
+  -- Default options
+  preview = {
+    lines_above = 0,
+    lines_below = 10,
+  },
+  scroll_preview = {
     scroll_down = "<C-f>",
     scroll_up = "<C-b>",
   },
-  code_action_keys = {
-    -- quit = "q",
-    quit = "<ESC>",
+  request_timeout = 2000,
+
+  -- A finder to show the defintion, reference and implementation 
+  finder = {
+    --percentage
+    max_height = 0.5,
+    force_max_height = false,
+    keys = {
+      jump_to = 'p',
+      edit = { 'o', '<CR>' },
+      vsplit = 'vs',
+      split = 'sp',
+      tabe = 't',
+      tabnew = 'r',
+      quit = { 'q', '<ESC>' },
+      close_in_preview = '<ESC>'
+    },
+  },
+
+  -- definition
+  definition = {
+    edit = "<C-c>o",
+    vsplit = "<C-c>v",
+    split = "<C-c>i",
+    tabe = "<C-c>t",
+    quit = "q",
+  },
+
+  -- code action
+  code_action = {
+    num_shortcut = true,
+    show_server_name = false,
+    extend_gitsigns = true,
+    keys = {
+      -- string | table type
+      quit = "q",
+      exec = "<CR>",
+    },
+  },
+
+  --diagnostic
+  diagnostic = {
+    on_insert = true,
+    on_insert_follow = false,
+    insert_winblend = 0,
+    show_code_action = true,
+    show_source = true,
+    jump_num_shortcut = true,
+     --1 is max
+    max_width = 0.7,
+    custom_fix = nil,
+    custom_msg = nil,
+    text_hl_follow = false,
+    border_follow = true,
+    keys = {
+      exec_action = "o",
+      quit = "q",
+      go_action = "g"
+    },
+  },
+
+  -- rename
+  rename = {
+    quit = "<C-c>",
     exec = "<CR>",
+    mark = "x",
+    confirm = "<CR>",
+    in_select = true,
   },
-  rename_action_keys = {
-    -- quit = "<C-c>",
-    quit = "<ESC>",
-    exec = "<CR>",
+
+  -- outline
+  outline = {
+    win_position = "right",
+    win_with = "",
+    win_width = 30,
+    show_detail = true,
+    auto_preview = true,
+    auto_refresh = true,
+    auto_close = true,
+    custom_sort = nil,
+    keys = {
+      jump = "o",
+      expand_collapse = "u",
+      quit = "q",
+    },
   },
-  definition_preview_icon = "  ",
-  border_style = "single",
-  rename_prompt_prefix = "➤",
-  rename_output_qflist = {
-    enable = false,
-    auto_open_qflist = false,
+
+  --callhierarchy
+  callhierarchy = {
+    show_detail = false,
+    keys = {
+      edit = "e",
+      vsplit = "s",
+      split = "i",
+      tabe = "t",
+      jump = "o",
+      quit = "q",
+      expand_collapse = "u",
+    },
   },
-  server_filetype_map = {},
-  diagnostic_prefix_format = "%d. ",
-  diagnostic_message_format = "%m %c",
-  highlight_prefix = false,
+
+  --symbol_in_winbar
+  symbol_in_winbar = {
+    enable = true,
+    separator = " ",
+    ignore_patterns={},
+    hide_keyword = true,
+    show_file = true,
+    folder_level = 2,
+    respect_root = false,
+    color_mode = true,
+  },
 })
 
 local M = {}

@@ -105,10 +105,10 @@ pluginKeys.telescopeList = {
     ["<C-k>"] = "move_selection_previous",
     ["<C-v>"] = "select_horizontal",
     ["<C-h>"] = "select_vertical",
-    ["<C-b>"] = "results_scrolling_up",
-    ["<C-f>"] = "results_scrolling_down",
-    ["<C-u>"] = "preview_scrolling_up",
-    ["<C-d>"] = "preview_scrolling_down",
+    ["<C-u>"] = "results_scrolling_up",
+    ["<C-d>"] = "results_scrolling_down",
+    ["<C-b>"] = "preview_scrolling_up",
+    ["<C-f>"] = "preview_scrolling_down",
     ["<Down>"] = "cycle_history_next",
     ["<Up>"] = "cycle_history_prev",
     ["<esc>"] = "close",
@@ -137,31 +137,25 @@ pluginKeys.mapLSP = function(mapbuf)
     -- rename
     mapbuf("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opt)
     mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
-    mapbuf('n', '<leader>df', '<cmd>Lspsaga preview_definition<CR>', opt)
+    mapbuf('n', '<leader>gd', '<cmd>Lspsaga goto_definition<CR>', opt)
+    mapbuf('n', '<leader>pd', '<cmd>Lspsaga peek_definition<CR>', opt)
     mapbuf("n", "<leader>ho", "<cmd>Lspsaga hover_doc<cr>", opt)
     mapbuf("n", "<leader>rf", "<cmd>Lspsaga lsp_finder<CR>", opt)
-    mapbuf("n", "<leader>of", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
-    mapbuf("n", "<leader>dn", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
-    mapbuf("n", "<leader>dp", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
-    -- mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
-    -- 未用
-    -- mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
-    -- mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
-    -- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
-    -- mapbuf("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opt)
-    -- mapbuf('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
-    -- mapbuf('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
-    -- mapbuf('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
-    -- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
+    mapbuf("n", "<leader>sd", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
+    mapbuf("n", "<leader>d]", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
+    mapbuf("n", "<leader>d[", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
+    mapbuf("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+    mapbuf("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+    mapbuf({"n", "t"}, "<Leader>tt", "<cmd>Lspsaga term_toggle<CR>")
   else
     mapbuf("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
     mapbuf("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
     mapbuf("n", "<leader>df", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
     mapbuf("n", "<leader>ho", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
     mapbuf("n", "<leader>rf", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
-    mapbuf("n", "<leader>of", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
-    mapbuf("n", "<leader>dn", "<cmd>lua vim.diagnostic.goto_next()<CR>", opt)
-    mapbuf("n", "<leader>dp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opt)
+    mapbuf("n", "<leader>sd", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
+    mapbuf("n", "<leader>d]", "<cmd>lua vim.diagnostic.goto_next()<CR>", opt)
+    mapbuf("n", "<leader>d[", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opt)
     -- mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
     -- 未用
     -- mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
@@ -259,7 +253,7 @@ end
 -- toggleterm
 -- <leader>tf float window; <leader>tl left window; <leader>tj bottem window
 pluginKeys.mapToggleTerm = function(toggleterm)
-  vim.keymap.set({ "n", "t" }, "<leader>tt", toggleterm.toggleJ)
+--  vim.keymap.set({ "n", "t" }, "<leader>tt", toggleterm.toggleJ)
 end
 
 -- hop (move cursor)

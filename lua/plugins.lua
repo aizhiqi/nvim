@@ -85,7 +85,11 @@ packer.startup({
     if G.lsp_ui then
       ---- UI for lsp
       use("onsails/lspkind-nvim")
-      use("tami5/lspsaga.nvim")
+      use({"glepnir/lspsaga.nvim",
+        requires = {
+        {"nvim-tree/nvim-web-devicons"},
+        --Please make sure you install markdown and markdown_inline parser
+        {"nvim-treesitter/nvim-treesitter"}}})
     end
 
     -- Lua nvim code assistant
