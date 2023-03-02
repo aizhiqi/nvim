@@ -103,8 +103,8 @@ lspsaga.setup({
       split = 'sp',
       tabe = 't',
       tabnew = 'r',
-      quit = { 'q', '<ESC>' },
-      close_in_preview = '<ESC>'
+      quit = { 'q' },
+      close_in_preview = 'q'
     },
   },
 

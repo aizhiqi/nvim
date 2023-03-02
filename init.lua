@@ -28,6 +28,7 @@ require("lsp.cmp")
 require("tools.gitsigns")
 require("tools.toggleterm")
 require("tools.hop")
+require("tools.whichkey")
 
 -- debugger
 require("dap.vimspector")

@@ -4,8 +4,6 @@ if not status then
   return
 end
 
-local list_keys = require("keybindings").nvimTreeList
-
 nvim_tree.setup({
   -- disable buildin netrw
   disable_netrw = true,
@@ -29,10 +27,10 @@ nvim_tree.setup({
     width = 34,
     side = "left",
     hide_root_folder = false,
-    mappings = {
-      custom_only = true,
-      list = list_keys,
-    },
+    --mappings = {
+    --  custom_only = true,
+    --  list = list_keys,
+    --},
     -- don't show line number
     number = false,
     relativenumber = false,
@@ -55,4 +53,7 @@ nvim_tree.setup({
     -- windows
     -- cmd = "wsl-open",
   },
+  on_attach = require("keybindings").nvimTreeList,
 })
+
+return nvim_tree

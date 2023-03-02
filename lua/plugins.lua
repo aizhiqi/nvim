@@ -46,18 +46,18 @@ packer.startup({
     use("EdenEast/nightfox.nvim")
     ----------------------- uicomponents --------------------
     -- nvim-tree (directory tree)
-    use({ "kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons", })
+    use({"kyazdani42/nvim-tree.lua", requires = "kyazdani42/nvim-web-devicons", })
     -- lualine (status bar)
-    use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" }, })
+    use({"nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" }, })
     use("arkav/lualine-lsp-progress")
     -- telescope (searcher)
-    use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" }, })
+    use({"nvim-telescope/telescope.nvim", requires = { "nvim-lua/plenary.nvim" }, })
     use("LinArcX/telescope-env.nvim")
     use("nvim-telescope/telescope-ui-select.nvim")
     use("ahmedkhalf/project.nvim") --need bugfix
     -------------- code analyze and highlight ---------------
     -- treesitter ()
-    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate", })
+    use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", })
     -- indent-blankline
     use("lukas-reineke/indent-blankline.nvim")
     -- nvim-autopairs
@@ -68,9 +68,9 @@ packer.startup({
     --use("mhartington/formatter.nvim")
     -------------------------- LSP --------------------------
     -- LSP Installer
-    use({ "williamboman/mason.nvim" })
-    use({ "williamboman/mason-lspconfig.nvim" })
-    use({ "neovim/nvim-lspconfig" })
+    use({"williamboman/mason.nvim" })
+    use({"williamboman/mason-lspconfig.nvim" })
+    use({"neovim/nvim-lspconfig" })
     -- autocomplete engine
     use("hrsh7th/nvim-cmp")
     use("hrsh7th/vim-vsnip")
@@ -85,11 +85,13 @@ packer.startup({
     if G.lsp_ui then
       ---- UI for lsp
       use("onsails/lspkind-nvim")
-      use({"glepnir/lspsaga.nvim",
+      use({
+        "glepnir/lspsaga.nvim",
         requires = {
-        {"nvim-tree/nvim-web-devicons"},
-        --Please make sure you install markdown and markdown_inline parser
-        {"nvim-treesitter/nvim-treesitter"}}})
+          { "nvim-tree/nvim-web-devicons" },
+          --Please make sure you install markdown and markdown_inline parser
+          { "nvim-treesitter/nvim-treesitter" } }
+      })
     end
 
     -- Lua nvim code assistant
@@ -101,10 +103,11 @@ packer.startup({
 
     ------------------------- Tools -------------------------
     -- git
-    use({ "lewis6991/gitsigns.nvim" })
+    use("lewis6991/gitsigns.nvim")
     -- toggle term
-    use { "phaazon/hop.nvim", branch = "v2" }
-    use({ "akinsho/toggleterm.nvim" })
+    use({"phaazon/hop.nvim", branch = "v2" })
+    use("akinsho/toggleterm.nvim")
+    use("folke/which-key.nvim")
 
     ---------------------- debugger -------------------------
     ---- vimspector
