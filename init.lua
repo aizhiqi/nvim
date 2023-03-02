@@ -1,10 +1,11 @@
 require("global")
 G.lsp_ui = true
 
+
 -- base plugin
 require("basic")
-require("keybindings")
 require("plugins")
+require("keybindings")
 require("colorscheme")
 require("autocmds")
 
@@ -20,15 +21,16 @@ require("syntax.indent-blankline")
 require("syntax.nvim-autopairs")
 require("syntax.comment")
 
--- LSP
-require("lsp.setup")
-require("lsp.cmp")
-
 -- Tools
 require("tools.gitsigns")
 require("tools.toggleterm")
 require("tools.hop")
 require("tools.whichkey")
 
+-- LSP
+require("lsp.setup")
+require("lsp.cmp")
+
 -- debugger
 require("dap.vimspector")
+

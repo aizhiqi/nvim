@@ -18,6 +18,7 @@ local default_opt = {
 
 -- keybindings for plugin
 local pluginKeys = {}
+local status, which_key = pcall(require, "tools.whichkey")
 
 -- define map function
 local map = function (...)
@@ -30,11 +31,16 @@ local map = function (...)
   vim.api.nvim_set_keymap(mode, "<leader>" .. key, cmd, opt)
 
   key = vim.g.mapHelperleader .. helper_key .. key
-  require("tools.whichkey").register(mode, key, cmd, opt)
+
+  if status and which_key ~= nil then
+    which_key.register(mode, key, cmd, opt)
+  end
 end
 
 local group = function (key, group)
-  require("tools.whichkey").register_group(vim.g.mapHelperleader .. key, group)
+  if status and which_key ~= nil then
+    which_key.register_group(vim.g.mapHelperleader .. key, group)
+  end
 end
 
 --------------------------------------------------------------------
@@ -94,7 +100,9 @@ pluginKeys.nvimTreeList = function (bufnr)
     end
     local key_map = function(mode, key, cmd, cmd_string, desc)
       vim.keymap.set(mode, key, cmd, opts(desc))
-      require("tools.whichkey").register(mode, vim.g.mapHelperleader .. tree_helper_key .. key, cmd_string, opts(desc))
+      if status and which_key ~= nil then
+        which_key.register(mode, vim.g.mapHelperleader .. tree_helper_key .. key, cmd_string, opts(desc))
+      end
     end
     -- BEGIN_DEFAULT_ON_ATTACH
     key_map('n', '<C-]>', api.tree.change_root_to_node,          '<cmd>lua require("nvim-tree.api").tree.change_root_to_node()<CR>',         'CD')

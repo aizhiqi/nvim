@@ -74,6 +74,7 @@ function M.launch_telescope(func_name, opts)
     basedir = TreeExplorer.cwd
   end
 
+  vim.notify("dir = " .. basedir)
   opts = opts or {}
   opts.cwd = basedir
   opts.search_dirs = { basedir }

@@ -10,7 +10,7 @@ autocmd("BufWritePost", {
   callback = function()
     if vim.fn.expand("<afile>") == "lua/plugins.lua" then
       vim.api.nvim_command("source lua/plugins.lua")
-      vim.api.nvim_command("PackerSync")
+      vim.api.nvim_command("Lazy sync")
     end
   end,
 })
