@@ -211,13 +211,18 @@ group(helper_prefix, "code")
 pluginKeys.comment = {
   toggler = {
     line = "gc",
+    block = "gcb",
   },
   opleader = {
-    block = "gc",
+    line = "gc",
+    block = "gcb",
   },
 }
 map("n", nil, helper_prefix, "c", "gc", { desc = "comment code", noremap = false })
 map("v", nil, helper_prefix, "c", "gc", { desc = "comment code", noremap = false })
+map("n", nil, helper_prefix, "cb", "gcb", { desc = "comment code", noremap = false })
+map("v", nil, helper_prefix, "cb", "gcb", { desc = "comment code", noremap = false })
+
 -- lsp keybindings in callback function
 pluginKeys.mapLSP = function(mapbuf)
   helper_prefix = "g"
