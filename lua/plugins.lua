@@ -96,6 +96,7 @@ local plugins = {
 if G.lsp_ui then
     ---- UI for lsp
   table.insert(plugins, {
+    "simrat39/symbols-outline.nvim",
     "onsails/lspkind-nvim",
     {
       "glepnir/lspsaga.nvim",
