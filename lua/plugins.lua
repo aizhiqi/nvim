@@ -20,7 +20,7 @@ if not status_ok then
   return
 end
 
-lazy.setup({
+local plugins = {
   -- lazy can update self
   "folke/lazy.nvim",
   -------------------------- plugins -------------------------------------------
@@ -73,18 +73,6 @@ lazy.setup({
   "hrsh7th/cmp-nvim-lsp-signature-help",
   "rafamadriz/friendly-snippets",
 
---  if G.lsp_ui then
-    ---- UI for lsp
-    "onsails/lspkind-nvim",
-    {
-      "glepnir/lspsaga.nvim",
-      dependencies = {
-        { "nvim-tree/nvim-web-devicons" },
-        --Please make sure you install markdown and markdown_inline parser
-        { "nvim-treesitter/nvim-treesitter" } }
-    },
- -- end
-
   -- Lua nvim code assistant
   "folke/neodev.nvim",
   -- JSON assistant
@@ -103,4 +91,20 @@ lazy.setup({
   ---------------------- debugger -------------------------
   ---- vimspector
   "puremourning/vimspector",
-})
+}
+
+if G.lsp_ui then
+    ---- UI for lsp
+  table.insert(plugins, {
+    "onsails/lspkind-nvim",
+    {
+      "glepnir/lspsaga.nvim",
+      dependencies = {
+        { "nvim-tree/nvim-web-devicons" },
+        --Please make sure you install markdown and markdown_inline parser
+        { "nvim-treesitter/nvim-treesitter" } }
+    },
+  })
+end
+
+lazy.setup(plugins)

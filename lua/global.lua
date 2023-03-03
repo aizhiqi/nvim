@@ -23,7 +23,7 @@ function G.requirePlugin(name)
 end
 
 function G.lspCap()
-  print(vim.inspect(vim.lsp.buf_get_clients()[1].resolved_capabilities))
+  print(vim.inspect(vim.lsp.get_active_clients()[1].resolved_capabilities))
 end
 
 return G

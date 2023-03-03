@@ -1,12 +1,3 @@
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
-
--- leader key is bank key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.mapHelperleader = "\\"
@@ -16,24 +7,36 @@ local default_opt = {
   silent = true,
 }
 
--- keybindings for plugin
 local pluginKeys = {}
 local status, which_key = pcall(require, "tools.whichkey")
 
--- define map function
 local map = function (...)
-  local helper_key = select(1, ...)
-  local mode = select(2, ...)
-  local key = select(3, ...)
-  local cmd = select(4, ...)
-  local opt = select(5, ...)
+  -- Modes
+  --   normal_mode = "n",
+  --   insert_mode = "i",
+  --   visual_mode = "v",
+  --   visual_block_mode = "x",
+  --   term_mode = "t",
+  --   command_mode = "c",
+  local mode = select(1, ...)
+  local leader_prefix = select(2, ...)
+  local helper_prefix = select(3, ...)
+  local key = select(4, ...)
+  local cmd = select(5, ...)
+  local opt = select(6, ...)
 
-  vim.api.nvim_set_keymap(mode, "<leader>" .. key, cmd, opt)
-
-  key = vim.g.mapHelperleader .. helper_key .. key
+  if leader_prefix ~= nil then
+    vim.api.nvim_set_keymap(mode, "<leader>" .. leader_prefix .. key, cmd, opt)
+  else
+    vim.api.nvim_set_keymap(mode, key, cmd, opt)
+  end
 
   if status and which_key ~= nil then
-    which_key.register(mode, key, cmd, opt)
+    if helper_prefix ~= nil then
+      which_key.register(mode, vim.g.mapHelperleader .. helper_prefix .. key, cmd, opt)
+    else
+      which_key.register(mode, vim.g.mapHelperleader .. key, cmd, opt)
+    end
   end
 end
 
@@ -44,137 +47,147 @@ local group = function (key, group)
 end
 
 --------------------------------------------------------------------
-local base_helper_key = "b"
-group(base_helper_key, "base operation")
+local helper_prefix = "i"
+local leader_prefix = ""
+group(helper_prefix, "interal commands")
 -- quit
-map(base_helper_key, "n", "q", "<cmd>q<CR>", default_opt)
-map(base_helper_key, "n", "w", "<cmd>w<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "q", "<cmd>q<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "w", "<cmd>w<CR>", default_opt)
 
 -- don't copy text in visual mode after paste
--- map(base_helper_key, "v", "p", '"_dP', default_opt)
+-- map(helper_prefix, "v", "p", '"_dP', default_opt)
 vim.api.nvim_set_keymap("v", "p", '"_dP', default_opt)
 
---  + hjkl switch window
-map(base_helper_key, "n", "h", "<C-w>h", default_opt)
-map(base_helper_key, "n", "j", "<C-w>j", default_opt)
-map(base_helper_key, "n", "k", "<C-w>k", default_opt)
-map(base_helper_key, "n", "l", "<C-w>l", default_opt)
-
--- adjust window size
-map(base_helper_key, "n", "<S-Left>", "<cmd>vertical resize -10<CR>", default_opt)
-map(base_helper_key, "n", "<S-Right>", "<cmd>vertical resize +10<CR>", default_opt)
-map(base_helper_key, "n", "<S-Down>", "<cmd>resize +10<CR>", default_opt)
-map(base_helper_key, "n", "<S-Up>", "<cmd>resize -10<CR>", default_opt)
-
--- Tab
-map(base_helper_key, "n", "t[", "<cmd>tabprevious<CR>", default_opt)
-map(base_helper_key, "n", "t]", "<cmd>tabnext<CR>", default_opt)
-map(base_helper_key, "n", "tn", "<cmd>tabnew<CR>", default_opt)
-map(base_helper_key, "n", "td", "<cmd>tabclose<CR>", default_opt)
-
--- Buffer
-map(base_helper_key, "n", "b[", "<cmd>bprevious<CR>", default_opt)
-map(base_helper_key, "n", "b]", "<cmd>bnext<CR>", default_opt)
-map(base_helper_key, "n", "bn", "<cmd>enew<CR>", default_opt)
-map(base_helper_key, "n", "bd", "<cmd>bdelete<CR>", default_opt)
-
 -- clear hight light
-map(base_helper_key, "n", "<CR>", "<cmd>nohlsearch<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "<CR>", "<cmd>nohlsearch<CR>", default_opt)
 
 -- Switch CWD to the directory of the open buffer
-map(base_helper_key, "n", "cd", "<cmd>cd %:p:h<CR>:pwd<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "cd", "<cmd>cd %:p:h<CR>:pwd<CR>", default_opt)
 -- Switch CWD to the root directory
--- map(base_helper_key, "n", "cdr :execute 'cd '.FindRoot() <CR>:pwd<cr>", opt>
+-- map(helper_prefix, "n", "cdr :execute 'cd '.FindRoot() <CR>:pwd<cr>", opt>
 -- Switch CWD to the home directory
-map(base_helper_key, "n", "cdh", "<cmd>cd $HOME<CR>:pwd<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "cdh", "<cmd>cd $HOME<CR>:pwd<CR>", default_opt)
+
+--  + hjkl switch window
+map("n", leader_prefix, helper_prefix, "h", "<C-w>h", default_opt)
+map("n", leader_prefix, helper_prefix, "j", "<C-w>j", default_opt)
+map("n", leader_prefix, helper_prefix, "k", "<C-w>k", default_opt)
+map("n", leader_prefix, helper_prefix, "l", "<C-w>l", default_opt)
+
+-- adjust window size
+map("n", leader_prefix, helper_prefix, "<S-Left>", "<cmd>vertical resize -10<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "<S-Right>", "<cmd>vertical resize +10<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "<S-Down>", "<cmd>resize +10<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "<S-Up>", "<cmd>resize -10<CR>", default_opt)
+
+-- Tab
+helper_prefix = "t"
+leader_prefix = "t"
+group(helper_prefix, "tab")
+map("n", leader_prefix, helper_prefix, "[", "<cmd>tabprevious<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "]", "<cmd>tabnext<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "n", "<cmd>tabnew<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "d", "<cmd>tabclose<CR>", default_opt)
+
+-- Buffer
+helper_prefix = "b"
+leader_prefix = "b"
+group(helper_prefix, "buffer")
+map("n", leader_prefix, helper_prefix, "[", "<cmd>bprevious<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "]", "<cmd>bnext<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "n", "<cmd>enew<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "d", "<cmd>bdelete<CR>", default_opt)
 
 --------------------------------------------------------------------
-local tree_helper_key = "e"
 -- nvim-tree
-group(tree_helper_key, "explorer (nvim-tree)")
-map(tree_helper_key, "n", "e", "<cmd>NvimTreeToggle<CR>", { desc = "explorer (nvim-tree)",  noremap = true, silent = true})
+helper_prefix = "e"
+leader_prefix = ""
+group(helper_prefix, "explorer (nvim-tree)")
+map("n", leader_prefix, helper_prefix, "e", "<cmd>NvimTreeToggle<CR>", { desc = "explorer (nvim-tree)",  noremap = true, silent = true})
 pluginKeys.nvimTreeList = function (bufnr)
-    local api = require('nvim-tree.api')
-    local opts = function(desc)
-      return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  helper_prefix = "e"
+  local api = require('nvim-tree.api')
+  local opts = function(desc)
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+  local key_map = function(mode, key, cmd, cmd_string, desc)
+    vim.keymap.set(mode, key, cmd, opts(desc))
+    if status and which_key ~= nil then
+      which_key.register(mode, vim.g.mapHelperleader .. helper_prefix .. key, cmd_string, opts(desc))
     end
-    local key_map = function(mode, key, cmd, cmd_string, desc)
-      vim.keymap.set(mode, key, cmd, opts(desc))
-      if status and which_key ~= nil then
-        which_key.register(mode, vim.g.mapHelperleader .. tree_helper_key .. key, cmd_string, opts(desc))
-      end
-    end
-    -- BEGIN_DEFAULT_ON_ATTACH
-    key_map('n', '<C-]>', api.tree.change_root_to_node,          '<cmd>lua require("nvim-tree.api").tree.change_root_to_node()<CR>',         'CD')
-    key_map('n', '<C-e>', api.node.open.replace_tree_buffer,     '<cmd>lua require("nvim-tree.api").node.open.replace_tree_buffer()<CR>',    'Open: In Place')
-    key_map('n', '<C-k>', api.node.show_info_popup,              '<cmd>lua require("nvim-tree.api").node.show_info_popup()<CR>',             'Info')
-    key_map('n', '<C-r>', api.fs.rename_sub,                     '<cmd>lua require("nvim-tree.api").fs.rename_sub()<CR>',                    'Rename: Omit Filename')
-    key_map('n', '<C-t>', api.node.open.tab,                     '<cmd>lua require("nvim-tree.api").node.open.tab()<CR>',                    'Open: New Tab')
-    key_map('n', '<C-v>', api.node.open.vertical,                '<cmd>lua require("nvim-tree.api").node.open.vertical()<CR>',               'Open: Vertical Split')
-    key_map('n', '<C-x>', api.node.open.horizontal,              '<cmd>lua require("nvim-tree.api").node.open.horizontal()<CR>',             'Open: Horizontal Split')
-    key_map('n', '<BS>',  api.node.navigate.parent_close,        '<cmd>lua require("nvim-tree.api").node.navigate.parent_close()<CR>',       'Close Directory')
-    key_map('n', '<CR>',  api.node.open.edit,                    '<cmd>lua require("nvim-tree.api").node.open.edit()<CR>',                   'Open')
-    key_map('n', '<Tab>', api.node.open.preview,                 '<cmd>lua require("nvim-tree.api").node.open.preview()<CR>',                'Open Preview')
-    --key_map('n', '>',     api.node.navigate.sibling.next,        '<cmd>lua require("nvim-tree.api").node.navigate.sibling.next()<CR>',       'Next Sibling')
-    --key_map('n', '<',     api.node.navigate.sibling.prev,        '<cmd>lua require("nvim-tree.api").node.navigate.sibling.prev()<CR>',       'Previous Sibling')
-    key_map('n', '.',     api.node.run.cmd,                      '<cmd>lua require("nvim-tree.api").node.run.cmd()<CR>',                     'Run Command')
-    key_map('n', '-',     api.tree.change_root_to_parent,        '<cmd>lua require("nvim-tree.api").tree.change_root_to_parent()<CR>',       'Up')
-    key_map('n', 'a',     api.fs.create,                         '<cmd>lua require("nvim-tree.api").fs.create()<CR>',                        'Create')
-    key_map('n', 'bmv',   api.marks.bulk.move,                   '<cmd>lua require("nvim-tree.api").marks.bulk.move()<CR>',                  'Move Bookmarked')
-    key_map('n', 'B',     api.tree.toggle_no_buffer_filter,      '<cmd>lua require("nvim-tree.api").tree.toggle_no_buffer_filter()<CR>',     'Toggle No Buffer')
-    key_map('n', 'c',     api.fs.copy.node,                      '<cmd>lua require("nvim-tree.api").fs.copy.node()<CR>',                     'Copy')
-    key_map('n', 'C',     api.tree.toggle_git_clean_filter,      '<cmd>lua require("nvim-tree.api").tree.toggle_git_clean_filter()<CR>',     'Toggle Git Clean')
-    key_map('n', '[c',    api.node.navigate.git.prev,            '<cmd>lua require("nvim-tree.api").node.navigate.git.prev()<CR>',           'Prev Git')
-    key_map('n', ']c',    api.node.navigate.git.next,            '<cmd>lua require("nvim-tree.api").node.navigate.git.next()<CR>',           'Next Git')
-    key_map('n', 'd',     api.fs.remove,                         '<cmd>lua require("nvim-tree.api").fs.remove()<CR>',                        'Delete')
-    key_map('n', 'D',     api.fs.trash,                          '<cmd>lua require("nvim-tree.api").fs.trash()<CR>',                         'Trash')
-    key_map('n', 'E',     api.tree.expand_all,                   '<cmd>lua require("nvim-tree.api").tree.expand_all()<CR>',                  'Expand All')
-    key_map('n', 'e',     api.fs.rename_basename,                '<cmd>lua require("nvim-tree.api").fs.rename_basename()<CR>',               'Rename: Basename')
-    key_map('n', ']e',    api.node.navigate.diagnostics.next,    '<cmd>lua require("nvim-tree.api").node.navigate.diagnostics.next()<CR>',   'Next Diagnostic')
-    key_map('n', '[e',    api.node.navigate.diagnostics.prev,    '<cmd>lua require("nvim-tree.api").node.navigate.diagnostics.prev()<CR>',   'Prev Diagnostic')
-    key_map('n', 'F',     api.live_filter.clear,                 '<cmd>lua require("nvim-tree.api").live_filter.clear()<CR>',                'Clean Filter')
-    key_map('n', 'f',     api.live_filter.start,                 '<cmd>lua require("nvim-tree.api").live_filter.start()<CR>',                'Filter')
-    key_map('n', 'g?',    api.tree.toggle_help,                  '<cmd>lua require("nvim-tree.api").tree.toggle_help()<CR>',                 'Help')
-    key_map('n', 'gy',    api.fs.copy.absolute_path,             '<cmd>lua require("nvim-tree.api").fs.copy.absolute_path()<CR>',            'Copy Absolute Path')
-    key_map('n', 'H',     api.tree.toggle_hidden_filter,         '<cmd>lua require("nvim-tree.api").tree.toggle_hidden_filter()<CR>',        'Toggle Dotfiles')
-    key_map('n', 'I',     api.tree.toggle_gitignore_filter,      '<cmd>lua require("nvim-tree.api").tree.toggle_gitignore_filter()<CR>',     'Toggle Git Ignore')
-    key_map('n', 'J',     api.node.navigate.sibling.last,        '<cmd>lua require("nvim-tree.api").node.navigate.sibling.last()<CR>',       'Last Sibling')
-    key_map('n', 'K',     api.node.navigate.sibling.first,       '<cmd>lua require("nvim-tree.api").node.navigate.sibling.first()<CR>',      'First Sibling')
-    key_map('n', 'm',     api.marks.toggle,                      '<cmd>lua require("nvim-tree.api").marks.toggle()<CR>',                     'Toggle Bookmark')
-    key_map('n', 'o',     api.node.open.edit,                    '<cmd>lua require("nvim-tree.api").node.open.edit()<CR>',                   'Open')
-    key_map('n', 'O',     api.node.open.no_window_picker,        '<cmd>lua require("nvim-tree.api").node.open.no_window_picker()<CR>',       'Open: No Window Picker')
-    key_map('n', 'p',     api.fs.paste,                          '<cmd>lua require("nvim-tree.api").fs.paste()<CR>',                         'Paste')
-    key_map('n', 'P',     api.node.navigate.parent,              '<cmd>lua require("nvim-tree.api").node.navigate.parent()<CR>',             'Parent Directory')
-    key_map('n', 'q',     api.tree.close,                        '<cmd>lua require("nvim-tree.api").tree.close()<CR>',                       'Close')
-    key_map('n', 'r',     api.fs.rename,                         '<cmd>lua require("nvim-tree.api").fs.rename()<CR>',                        'Rename')
-    key_map('n', 'R',     api.tree.reload,                       '<cmd>lua require("nvim-tree.api").tree.reload()<CR>',                      'Refresh')
-    key_map('n', 's',     api.node.run.system,                   '<cmd>lua require("nvim-tree.api").node.run.system()<CR>',                  'Run System')
-    key_map('n', 'S',     api.tree.search_node,                  '<cmd>lua require("nvim-tree.api").tree.search_node()<CR>',                 'Search')
-    key_map('n', 'U',     api.tree.toggle_custom_filter,         '<cmd>lua require("nvim-tree.api").tree.toggle_custom_filter()<CR>',        'Toggle Hidden')
-    key_map('n', 'W',     api.tree.collapse_all,                 '<cmd>lua require("nvim-tree.api").tree.collapse_all()<CR>',                'Collapse')
-    key_map('n', 'x',     api.fs.cut,                            '<cmd>lua require("nvim-tree.api").fs.cut()<CR>',                           'Cut')
-    key_map('n', 'y',     api.fs.copy.filename,                  '<cmd>lua require("nvim-tree.api").fs.copy.filename()<CR>',                 'Copy Name')
-    key_map('n', 'Y',     api.fs.copy.relative_path,             '<cmd>lua require("nvim-tree.api").fs.copy.relative_path()<CR>',            'Copy Relative Path')
-    key_map('n', '<2-LeftMouse>',  api.node.open.edit,           '<cmd>lua require("nvim-tree.api").node.open.edit()<CR>',                   'Open')
-    key_map('n', '<2-RightMouse>', api.tree.change_root_to_node, '<cmd>lua require("nvim-tree.api").tree.change_root_to_node()<CR>',         'CD')
+  end
+  -- BEGIN_DEFAULT_ON_ATTACH
+  key_map('n', '<C-]>', api.tree.change_root_to_node,          '<cmd>lua require("nvim-tree.api").tree.change_root_to_node()<CR>',         'CD')
+  key_map('n', '<C-e>', api.node.open.replace_tree_buffer,     '<cmd>lua require("nvim-tree.api").node.open.replace_tree_buffer()<CR>',    'Open: In Place')
+  key_map('n', '<C-k>', api.node.show_info_popup,              '<cmd>lua require("nvim-tree.api").node.show_info_popup()<CR>',             'Info')
+  key_map('n', '<C-r>', api.fs.rename_sub,                     '<cmd>lua require("nvim-tree.api").fs.rename_sub()<CR>',                    'Rename: Omit Filename')
+  key_map('n', '<C-t>', api.node.open.tab,                     '<cmd>lua require("nvim-tree.api").node.open.tab()<CR>',                    'Open: New Tab')
+  key_map('n', '<C-v>', api.node.open.vertical,                '<cmd>lua require("nvim-tree.api").node.open.vertical()<CR>',               'Open: Vertical Split')
+  key_map('n', '<C-x>', api.node.open.horizontal,              '<cmd>lua require("nvim-tree.api").node.open.horizontal()<CR>',             'Open: Horizontal Split')
+  key_map('n', '<BS>',  api.node.navigate.parent_close,        '<cmd>lua require("nvim-tree.api").node.navigate.parent_close()<CR>',       'Close Directory')
+  key_map('n', '<CR>',  api.node.open.edit,                    '<cmd>lua require("nvim-tree.api").node.open.edit()<CR>',                   'Open')
+  key_map('n', '<Tab>', api.node.open.preview,                 '<cmd>lua require("nvim-tree.api").node.open.preview()<CR>',                'Open Preview')
+  --key_map('n', '>',     api.node.navigate.sibling.next,        '<cmd>lua require("nvim-tree.api").node.navigate.sibling.next()<CR>',       'Next Sibling')
+  --key_map('n', '<',     api.node.navigate.sibling.prev,        '<cmd>lua require("nvim-tree.api").node.navigate.sibling.prev()<CR>',       'Previous Sibling')
+  key_map('n', '.',     api.node.run.cmd,                      '<cmd>lua require("nvim-tree.api").node.run.cmd()<CR>',                     'Run Command')
+  key_map('n', '-',     api.tree.change_root_to_parent,        '<cmd>lua require("nvim-tree.api").tree.change_root_to_parent()<CR>',       'Up')
+  key_map('n', 'a',     api.fs.create,                         '<cmd>lua require("nvim-tree.api").fs.create()<CR>',                        'Create')
+  key_map('n', 'bmv',   api.marks.bulk.move,                   '<cmd>lua require("nvim-tree.api").marks.bulk.move()<CR>',                  'Move Bookmarked')
+  key_map('n', 'B',     api.tree.toggle_no_buffer_filter,      '<cmd>lua require("nvim-tree.api").tree.toggle_no_buffer_filter()<CR>',     'Toggle No Buffer')
+  key_map('n', 'c',     api.fs.copy.node,                      '<cmd>lua require("nvim-tree.api").fs.copy.node()<CR>',                     'Copy')
+  key_map('n', 'C',     api.tree.toggle_git_clean_filter,      '<cmd>lua require("nvim-tree.api").tree.toggle_git_clean_filter()<CR>',     'Toggle Git Clean')
+  key_map('n', '[c',    api.node.navigate.git.prev,            '<cmd>lua require("nvim-tree.api").node.navigate.git.prev()<CR>',           'Prev Git')
+  key_map('n', ']c',    api.node.navigate.git.next,            '<cmd>lua require("nvim-tree.api").node.navigate.git.next()<CR>',           'Next Git')
+  key_map('n', 'd',     api.fs.remove,                         '<cmd>lua require("nvim-tree.api").fs.remove()<CR>',                        'Delete')
+  key_map('n', 'D',     api.fs.trash,                          '<cmd>lua require("nvim-tree.api").fs.trash()<CR>',                         'Trash')
+  key_map('n', 'E',     api.tree.expand_all,                   '<cmd>lua require("nvim-tree.api").tree.expand_all()<CR>',                  'Expand All')
+  key_map('n', 'e',     api.fs.rename_basename,                '<cmd>lua require("nvim-tree.api").fs.rename_basename()<CR>',               'Rename: Basename')
+  key_map('n', ']e',    api.node.navigate.diagnostics.next,    '<cmd>lua require("nvim-tree.api").node.navigate.diagnostics.next()<CR>',   'Next Diagnostic')
+  key_map('n', '[e',    api.node.navigate.diagnostics.prev,    '<cmd>lua require("nvim-tree.api").node.navigate.diagnostics.prev()<CR>',   'Prev Diagnostic')
+  key_map('n', 'F',     api.live_filter.clear,                 '<cmd>lua require("nvim-tree.api").live_filter.clear()<CR>',                'Clean Filter')
+  key_map('n', 'f',     api.live_filter.start,                 '<cmd>lua require("nvim-tree.api").live_filter.start()<CR>',                'Filter')
+  key_map('n', 'g?',    api.tree.toggle_help,                  '<cmd>lua require("nvim-tree.api").tree.toggle_help()<CR>',                 'Help')
+  key_map('n', 'gy',    api.fs.copy.absolute_path,             '<cmd>lua require("nvim-tree.api").fs.copy.absolute_path()<CR>',            'Copy Absolute Path')
+  key_map('n', 'H',     api.tree.toggle_hidden_filter,         '<cmd>lua require("nvim-tree.api").tree.toggle_hidden_filter()<CR>',        'Toggle Dotfiles')
+  key_map('n', 'I',     api.tree.toggle_gitignore_filter,      '<cmd>lua require("nvim-tree.api").tree.toggle_gitignore_filter()<CR>',     'Toggle Git Ignore')
+  key_map('n', 'J',     api.node.navigate.sibling.last,        '<cmd>lua require("nvim-tree.api").node.navigate.sibling.last()<CR>',       'Last Sibling')
+  key_map('n', 'K',     api.node.navigate.sibling.first,       '<cmd>lua require("nvim-tree.api").node.navigate.sibling.first()<CR>',      'First Sibling')
+  key_map('n', 'm',     api.marks.toggle,                      '<cmd>lua require("nvim-tree.api").marks.toggle()<CR>',                     'Toggle Bookmark')
+  key_map('n', 'o',     api.node.open.edit,                    '<cmd>lua require("nvim-tree.api").node.open.edit()<CR>',                   'Open')
+  key_map('n', 'O',     api.node.open.no_window_picker,        '<cmd>lua require("nvim-tree.api").node.open.no_window_picker()<CR>',       'Open: No Window Picker')
+  key_map('n', 'p',     api.fs.paste,                          '<cmd>lua require("nvim-tree.api").fs.paste()<CR>',                         'Paste')
+  key_map('n', 'P',     api.node.navigate.parent,              '<cmd>lua require("nvim-tree.api").node.navigate.parent()<CR>',             'Parent Directory')
+  key_map('n', 'q',     api.tree.close,                        '<cmd>lua require("nvim-tree.api").tree.close()<CR>',                       'Close')
+  key_map('n', 'r',     api.fs.rename,                         '<cmd>lua require("nvim-tree.api").fs.rename()<CR>',                        'Rename')
+  key_map('n', 'R',     api.tree.reload,                       '<cmd>lua require("nvim-tree.api").tree.reload()<CR>',                      'Refresh')
+  key_map('n', 's',     api.node.run.system,                   '<cmd>lua require("nvim-tree.api").node.run.system()<CR>',                  'Run System')
+  key_map('n', 'S',     api.tree.search_node,                  '<cmd>lua require("nvim-tree.api").tree.search_node()<CR>',                 'Search')
+  key_map('n', 'U',     api.tree.toggle_custom_filter,         '<cmd>lua require("nvim-tree.api").tree.toggle_custom_filter()<CR>',        'Toggle Hidden')
+  key_map('n', 'W',     api.tree.collapse_all,                 '<cmd>lua require("nvim-tree.api").tree.collapse_all()<CR>',                'Collapse')
+  key_map('n', 'x',     api.fs.cut,                            '<cmd>lua require("nvim-tree.api").fs.cut()<CR>',                           'Cut')
+  key_map('n', 'y',     api.fs.copy.filename,                  '<cmd>lua require("nvim-tree.api").fs.copy.filename()<CR>',                 'Copy Name')
+  key_map('n', 'Y',     api.fs.copy.relative_path,             '<cmd>lua require("nvim-tree.api").fs.copy.relative_path()<CR>',            'Copy Relative Path')
+  key_map('n', '<2-LeftMouse>',  api.node.open.edit,           '<cmd>lua require("nvim-tree.api").node.open.edit()<CR>',                   'Open')
+  key_map('n', '<2-RightMouse>', api.tree.change_root_to_node, '<cmd>lua require("nvim-tree.api").tree.change_root_to_node()<CR>',         'CD')
 end
 
 --------------------------------------------------------------------
 -- Telescope
-local finder_helper_key = "f"
-group(finder_helper_key, "finder (telescope)")
+helper_prefix = "f"
+leader_prefix = "f"
+group(helper_prefix, "finder (telescope)")
 -- don't need to append finder_helper_key, because all key_map begin with "f"
 -- if you do it, your helper key will be like this "\fff"...
-map("", "n", "ff", "<cmd>lua require('ui.telescope').launch_find_files()<CR>", default_opt)
-map("", 'n', 'fg', "<cmd>lua require('ui.telescope').launch_live_grep()<CR>", default_opt)
-map("", 'n', 'fb', "<cmd>Telescope buffers<CR>", default_opt)
-map("", 'n', 'fh', "<cmd>Telescope help_tags<CR>", default_opt)
-map("", 'n', 'fe', "<cmd>Telescope env<CR>", default_opt)
-map("", 'n', 'fc', "<cmd>Telescope commands<CR>", default_opt)
-map("", 'n', 'fs', "<cmd>Telescope grep_string<CR>", default_opt)
-map("", 'n', 'fp', "<cmd>Telescope projects<CR>", default_opt)
-map("", 'n', 'fo', "<cmd>Telescope oldfiles<CR>", default_opt)
-map("", 'n', 'fk', "<cmd>Telescope keymaps<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "f", "<cmd>lua require('ui.telescope').launch_find_files()<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "g", "<cmd>lua require('ui.telescope').launch_live_grep()<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "b", "<cmd>Telescope buffers<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "h", "<cmd>Telescope help_tags<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "e", "<cmd>Telescope env<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "c", "<cmd>Telescope commands<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "s", "<cmd>Telescope grep_string<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "p", "<cmd>Telescope projects<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "o", "<cmd>Telescope oldfiles<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "k", "<cmd>Telescope keymaps<CR>", default_opt)
 pluginKeys.telescopeList = {
   i = {
     ["<C-j>"] = "move_selection_next",
@@ -192,38 +205,30 @@ pluginKeys.telescopeList = {
 }
 
 --------------------------------------------------------------------
-local code_assistant_helper_key = "a"
-group(code_assistant_helper_key, "code assistant")
--- Comment
+helper_prefix = "g"
+leader_prefix = "g"
+group(helper_prefix, "code")
 pluginKeys.comment = {
   toggler = {
-    line = "cc",
+    line = "gc",
   },
   opleader = {
-    block = "cb",
+    block = "gc",
   },
 }
-group(code_assistant_helper_key .. "c", "comment code")
-map(code_assistant_helper_key .. "c", "n", "c", "cc", { desc = "comment code", noremap = false })
-map(code_assistant_helper_key .. "c", "v", "c", "cb", { desc = "comment code", noremap = false })
-
--- treesitter code fold
-group(code_assistant_helper_key .. "z", "fold code")
-map(code_assistant_helper_key .. "z", "n", "z", "<cmd>foldclose<CR>", default_opt)
-map(code_assistant_helper_key .. "zz", "n", "zz", "<cmd>foldopen<CR>", default_opt)
-
---------------------------------------------------------------------
+map("n", nil, helper_prefix, "c", "gc", { desc = "comment code", noremap = false })
+map("v", nil, helper_prefix, "c", "gc", { desc = "comment code", noremap = false })
 -- lsp keybindings in callback function
 pluginKeys.mapLSP = function(mapbuf)
-  local lsp_helper_key = "l"
-  group(lsp_helper_key, "lsp")
+  helper_prefix = "g"
+  leader_prefix = "g"
 
   local opts = function(desc)
     return { desc = 'lsp: ' .. desc, noremap = true, silent = true, nowait = true }
   end
   local key_map = function(mode, key, cmd, desc)
-    mapbuf(mode, "<leader>".. lsp_helper_key .. key, cmd, opts(desc))
-    require("tools.whichkey").register(mode, vim.g.mapHelperleader .. lsp_helper_key .. key, cmd, opts(desc))
+    mapbuf(mode, leader_prefix .. key, cmd, opts(desc))
+    require("tools.whichkey").register(mode, vim.g.mapHelperleader .. helper_prefix .. key, cmd, opts(desc))
   end
 
   if G.lsp_ui then
@@ -247,7 +252,6 @@ pluginKeys.mapLSP = function(mapbuf)
     key_map("n", "d", "<cmd>lua vim.lsp.buf.definition()<CR>", "definition")
     key_map("n", "h", "<cmd>lua vim.lsp.buf.hover()<CR>", "hover")
     key_map("n", "r", "<cmd>lua vim.lsp.buf.references()<CR>", "references")
-    key_map("n", "d", "<cmd>lua vim.diagnostic.open_float()<CR>", "open_float")
     key_map("n", "]", "<cmd>lua vim.diagnostic.goto_next()<CR>", "goto_next")
     key_map("n", "[", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "goto_prev")
     -- key_map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
@@ -261,26 +265,10 @@ pluginKeys.mapLSP = function(mapbuf)
     -- key_map('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
     -- key_map('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
   end
-  key_map("n", "d", "<cmd>Telescope diagnostics<CR>", "diagnostics")
+  -- key_map("n", "d", "<cmd>Telescope diagnostics<CR>", "diagnostics")
 end
 
--- vimspector
-pluginKeys.mapVimspector = function()
-  -- 开始
-  --map("n", "<leader>dl", "<cmd>call vimspector#Launch()<CR>", opt)
-  ---- 结束
-  --map("n", "<Leader>dr", "<cmd>call vimspector#Reset()<CR>", opt)
-  ---- 继续
-  --map("n", "<Leader>dc", "<cmd>call vimspector#Continue()<CR>", opt)
-  ---- 设置断点
-  --map("n", "<Leader>db", "<cmd>call vimspector#ToggleBreakpoint()<CR>", opt)
-  --map("n", "<Leader>dT", "<cmd>call vimspector#ClearBreakpoints()<CR>", opt)
-  ----  stepOver, stepOut, stepInto
-  --map("n", "<leader>dj", "<Plug>VimspectorStepOver", opt)
-  --map("n", "<leader>dk", "<Plug>VimspectorStepOut", opt)
-  --map("n", "<leader>dl", "<Plug>VimspectorStepInto", opt)
-end
-
+--------------------------------------------------------------------
 -- nvim-cmp
 pluginKeys.cmp = function(cmp)
   local feedkey = function(key, mode)
@@ -343,21 +331,41 @@ pluginKeys.cmp = function(cmp)
   }
 end
 
+--------------------------------------------------------------------
+-- vimspector
+pluginKeys.mapVimspector = function()
+  -- 开始
+  --map("n", "<leader>dl", "<cmd>call vimspector#Launch()<CR>", opt)
+  ---- 结束
+  --map("n", "<Leader>dr", "<cmd>call vimspector#Reset()<CR>", opt)
+  ---- 继续
+  --map("n", "<Leader>dc", "<cmd>call vimspector#Continue()<CR>", opt)
+  ---- 设置断点
+  --map("n", "<Leader>db", "<cmd>call vimspector#ToggleBreakpoint()<CR>", opt)
+  --map("n", "<Leader>dT", "<cmd>call vimspector#ClearBreakpoints()<CR>", opt)
+  ----  stepOver, stepOut, stepInto
+  --map("n", "<leader>dj", "<Plug>VimspectorStepOver", opt)
+  --map("n", "<leader>dk", "<Plug>VimspectorStepOut", opt)
+  --map("n", "<leader>dl", "<Plug>VimspectorStepInto", opt)
+end
 
+--------------------------------------------------------------------
 -- toggleterm
 -- <leader>tf float window; <leader>tl left window; <leader>tj bottem window
 pluginKeys.mapToggleTerm = function(toggleterm)
 --  vim.keymap.set({ "n", "t" }, "<leader>tt", toggleterm.toggleJ)
 end
 
+--------------------------------------------------------------------
 -- hop (move cursor)
---map("n", "mj", "<cmd>HopLineBC<CR>", default_opt)
---map("v", "mj", "<cmd>HopLineBC<CR>", default_opt)
---map("n", "mk", "<cmd>HopLineAC<CR>", default_opt)
---map("v", "mk", "<cmd>HopLineAC<CR>", default_opt)
---map("n", "mh", "<cmd>HopWordCurrentLineBC<CR>", default_opt)
---map("v", "mh", "<cmd>HopWordCurrentLineBC<CR>", default_opt)
---map("n", "ml", "<cmd>HopWordCurrentLineAC<CR>", default_opt)
---map("v", "ml", "<cmd>HopWordCurrentLineAC<CR>", default_opt)
+group("z", "move cursor (hop)")
+map("n", nil, nil, "zk", "<cmd>HopLineBC<CR>", default_opt)
+map("v", nil, nil, "zk", "<cmd>HopLineBC<CR>", default_opt)
+map("n", nil, nil, "zj", "<cmd>HopLineAC<CR>", default_opt)
+map("v", nil, nil, "zj", "<cmd>HopLineAC<CR>", default_opt)
+map("n", nil, nil, "zh", "<cmd>HopWordCurrentLineBC<CR>", default_opt)
+map("v", nil, nil, "zh", "<cmd>HopWordCurrentLineBC<CR>", default_opt)
+map("n", nil, nil, "zl", "<cmd>HopWordCurrentLineAC<CR>", default_opt)
+map("v", nil, nil, "zl", "<cmd>HopWordCurrentLineAC<CR>", default_opt)
 
 return pluginKeys
