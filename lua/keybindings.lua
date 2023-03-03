@@ -251,6 +251,7 @@ pluginKeys.mapLSP = function(mapbuf)
     key_map("n", "o", "<cmd>Lspsaga outgoing_calls<CR>", "outgoing_calls")
     key_map("n", "t", "<cmd>Lspsaga term_toggle<CR>", "term_toggle")
     key_map("t", "t", "<cmd>Lspsaga term_toggle<CR>", "term_toggle")
+    --key_map("n", "s", "<cmd>Lspsaga outline<CR>", "outline")
   else
     key_map("n", "n", "<cmd>lua vim.lsp.buf.rename()<CR>", "rename")
     key_map("n", "a", "<cmd>lua vim.lsp.buf.code_action()<CR>", "code_action")
@@ -259,8 +260,9 @@ pluginKeys.mapLSP = function(mapbuf)
     key_map("n", "r", "<cmd>lua vim.lsp.buf.references()<CR>", "references")
     key_map("n", "]", "<cmd>lua vim.diagnostic.goto_next()<CR>", "goto_next")
     key_map("n", "[", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "goto_prev")
+    -- key_map("n", "s", "<cmd>lua vim.lsp.buf.outline()<CR>", "outline")
     -- key_map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
-    -- 未用
+    -- 
     -- key_map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
     -- key_map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
     -- key_map('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
@@ -271,6 +273,27 @@ pluginKeys.mapLSP = function(mapbuf)
     -- key_map('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
   end
   -- key_map("n", "d", "<cmd>Telescope diagnostics<CR>", "diagnostics")
+  key_map("n", "s", "<cmd>SymbolsOutline<CR>", "outline")
+end
+
+--------------------------------------------------------------------
+-- outline
+pluginKeys.outline = function()
+  keymaps = {
+    -- These keymaps can be a string or a table for multiple keys
+    close = {"<Esc>", "q"},
+    goto_location = "<Cr>",
+    focus_location = "o",
+    hover_symbol = "<C-space>",
+    toggle_preview = "K",
+    rename_symbol = "r",
+    code_actions = "a",
+    fold = "h",
+    unfold = "l",
+    fold_all = "W",
+    unfold_all = "E",
+    fold_reset = "R",
+  }
 end
 
 --------------------------------------------------------------------
