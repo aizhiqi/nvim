@@ -73,8 +73,11 @@ function M.launch_telescope(func_name, opts)
   if (node.name == '..' and TreeExplorer ~= nil) then
     basedir = TreeExplorer.cwd
   end
+  if basedir == nil then
+    return false
+  end
 
-  vim.notify("dir = " .. basedir)
+  vim.notify("telescope in directory:" .. basedir)
   opts = opts or {}
   opts.cwd = basedir
   opts.search_dirs = { basedir }
