@@ -43,10 +43,47 @@ local view_selection = function(prompt_bufnr, map)
   return true
 end
 
+local function get_base_dir()
+  local telescope_status_ok, _ = pcall(require, "telescope")
+  if not telescope_status_ok then
+    return nil
+  end
+  local lib_status_ok, lib = pcall(require, "nvim-tree.lib")
+  if not lib_status_ok then
+    return nil
+  end
+  local node_status_ok, node = pcall(lib.get_node_at_cursor)
+  if(not node_status_ok or node == nil) then
+    return nil
+  end
+  local is_folder = node.fs_stat and node.fs_stat.type == 'directory' or false
+  local basedir = is_folder and node.absolute_path or vim.fn.fnamemodify(node.absolute_path, ":h")
+  if (node.name == '..' and TreeExplorer ~= nil) then
+    basedir = TreeExplorer.cwd
+  end
+
+  return basedir
+end
+
+local function launch_telescope(func_name, opts)
+  require("telescope.builtin")[func_name](opts)
+  return true
+end
+
 function M.launch_live_grep(opts)
   local current_word = vim.fn.expand("<cword>")
-  if not M.launch_telescope("live_grep", current_word, opts) then
+  local base_dir = get_base_dir()
+  if base_dir == nil then
     vim.cmd("Telescope live_grep default_text=" .. current_word)
+  else
+    opts = opts or {}
+    opts.cwd = base_dir
+    --opts.search_dirs = { base_dir }
+    --opts.attach_mappings = view_selection
+    if current_word ~= nil then
+      opts.default_text = current_word
+    end
+    launch_telescope("live_grep", opts)
   end
 end
 
@@ -56,43 +93,16 @@ function M.launch_workspace_symbols()
 end
 
 function M.launch_find_files(opts)
-  if not M.launch_telescope("find_files", nil, opts) then
+  local base_dir = get_base_dir()
+  if base_dir == nil then
     vim.cmd("Telescope find_files")
+  else
+    vim.notify("base_dir"..base_dir)
+    opts = opts or {}
+    opts.cwd = base_dir
+    launch_telescope("find_files", opts)
   end
 end
 
-function M.launch_telescope(func_name, default_text, opts)
-  local telescope_status_ok, _ = pcall(require, "telescope")
-  if not telescope_status_ok then
-    return false
-  end
-  local lib_status_ok, lib = pcall(require, "nvim-tree.lib")
-  if not lib_status_ok then
-    return false
-  end
-  local node_status_ok, node = pcall(lib.get_node_at_cursor)
-  if(not node_status_ok or node == nil) then
-    return false
-  end
-  local is_folder = node.fs_stat and node.fs_stat.type == 'directory' or false
-  local basedir = is_folder and node.absolute_path or vim.fn.fnamemodify(node.absolute_path, ":h")
-  if (node.name == '..' and TreeExplorer ~= nil) then
-    basedir = TreeExplorer.cwd
-  end
-  if basedir == nil then
-    return false
-  end
-
-  vim.notify("Telescope " .. func_name .. " in directory:" .. basedir)
-  opts = opts or {}
-  opts.cwd = basedir
-  opts.search_dirs = { basedir }
-  opts.attach_mappings = view_selection
-  if default_text ~= nil then
-    opts.default_text = default_text
-  end
-  require("telescope.builtin")[func_name](opts)
-  return true
-end
 
 return M
