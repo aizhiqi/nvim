@@ -44,18 +44,24 @@ local view_selection = function(prompt_bufnr, map)
 end
 
 function M.launch_live_grep(opts)
-  if not M.launch_telescope("live_grep", opts) then
-    vim.cmd("Telescope live_grep")
+  local current_word = vim.fn.expand("<cword>")
+  if not M.launch_telescope("live_grep", current_word, opts) then
+    vim.cmd("Telescope live_grep default_text=" .. current_word)
   end
 end
 
+function M.launch_workspace_symbols()
+  local current_word = vim.fn.expand("<cword>")
+  vim.cmd("Telescope lsp_workspace_symbols default_text=" .. current_word)
+end
+
 function M.launch_find_files(opts)
-  if not M.launch_telescope("find_files", opts) then
+  if not M.launch_telescope("find_files", nil, opts) then
     vim.cmd("Telescope find_files")
   end
 end
 
-function M.launch_telescope(func_name, opts)
+function M.launch_telescope(func_name, default_text, opts)
   local telescope_status_ok, _ = pcall(require, "telescope")
   if not telescope_status_ok then
     return false
@@ -77,11 +83,14 @@ function M.launch_telescope(func_name, opts)
     return false
   end
 
-  vim.notify("telescope in directory:" .. basedir)
+  vim.notify("Telescope " .. func_name .. " in directory:" .. basedir)
   opts = opts or {}
   opts.cwd = basedir
   opts.search_dirs = { basedir }
   opts.attach_mappings = view_selection
+  if default_text ~= nil then
+    opts.default_text = default_text
+  end
   require("telescope.builtin")[func_name](opts)
   return true
 end

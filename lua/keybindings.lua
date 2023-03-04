@@ -188,6 +188,7 @@ map("n", leader_prefix, helper_prefix, "s", "<cmd>Telescope grep_string<CR>", de
 map("n", leader_prefix, helper_prefix, "p", "<cmd>Telescope projects<CR>", default_opt)
 map("n", leader_prefix, helper_prefix, "o", "<cmd>Telescope oldfiles<CR>", default_opt)
 map("n", leader_prefix, helper_prefix, "k", "<cmd>Telescope keymaps<CR>", default_opt)
+map("n", leader_prefix, helper_prefix, "t", "<cmd>lua require('ui.telescope').launch_workspace_symbols()<CR>", default_opt)
 pluginKeys.telescopeList = {
   i = {
     ["<C-j>"] = "move_selection_next",
