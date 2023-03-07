@@ -64,4 +64,4 @@ M.toggleJ = function()
   tj:open()
 end
 
-require("keybindings").mapToggleTerm(M)
+return M

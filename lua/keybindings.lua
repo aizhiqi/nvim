@@ -250,8 +250,6 @@ pluginKeys.mapLSP = function(mapbuf)
     key_map("n", "[", "<cmd>Lspsaga diagnostic_jump_prev<cr>", "diagnostic_jump_prev")
     key_map("n", "i", "<cmd>Lspsaga incoming_calls<CR>", "incoming_calls")
     key_map("n", "o", "<cmd>Lspsaga outgoing_calls<CR>", "outgoing_calls")
-    key_map("n", "t", "<cmd>Lspsaga term_toggle<CR>", "term_toggle")
-    key_map("t", "t", "<cmd>Lspsaga term_toggle<CR>", "term_toggle")
     --key_map("n", "s", "<cmd>Lspsaga outline<CR>", "outline")
   else
     key_map("n", "n", "<cmd>lua vim.lsp.buf.rename()<CR>", "rename")
@@ -280,7 +278,7 @@ end
 --------------------------------------------------------------------
 -- outline
 pluginKeys.outline = function()
-  keymaps = {
+  local keymaps = {
     -- These keymaps can be a string or a table for multiple keys
     close = {"<Esc>", "q"},
     goto_location = "<Cr>",
@@ -295,6 +293,7 @@ pluginKeys.outline = function()
     unfold_all = "E",
     fold_reset = "R",
   }
+  return keymaps
 end
 
 --------------------------------------------------------------------
@@ -380,10 +379,12 @@ end
 
 --------------------------------------------------------------------
 -- toggleterm
--- <leader>tf float window; <leader>tl left window; <leader>tj bottem window
-pluginKeys.mapToggleTerm = function(toggleterm)
---  vim.keymap.set({ "n", "t" }, "<leader>tt", toggleterm.toggleJ)
-end
+--------------------------------------------------------------------
+helper_prefix = "c"
+leader_prefix = "c"
+group(helper_prefix, "terminator")
+map("n", leader_prefix, helper_prefix, "j", '<cmd>lua require("tools.toggleterm").toggleJ()<CR>', default_opt)
+map("n", leader_prefix, helper_prefix, "l", '<cmd>lua require("tools.toggleterm").toggleL()<CR>', default_opt)
 
 --------------------------------------------------------------------
 -- hop (move cursor)
