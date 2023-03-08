@@ -58,6 +58,20 @@ cmp.setup({
   mapping = require("keybindings").cmp(cmp),
   -- show icon use lspkind-nvim
   formatting = formatting,
+  -- sorting
+  --sorting = {
+  --    comparators = {
+  --      cmp.config.score,
+  --      cmp.config.kind,
+  --      cmp.config.length,
+  --      cmp.config.order,
+  --      cmp.config.offset,
+  --      cmp.config.exact,
+  --      cmp.config.locality,
+  --      cmp.config.sort_text,
+  --      cmp.config.recently_used,
+  --    },
+  --  },
 })
 
 -- Use buffer source for `/`.
