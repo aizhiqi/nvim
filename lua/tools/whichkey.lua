@@ -1,7 +1,6 @@
 local status, which_key = pcall(require, "which-key")
 if not status then
-  vim.notify("can't find which-key")
-  return
+  error("can't find which-key")
 end
 
 

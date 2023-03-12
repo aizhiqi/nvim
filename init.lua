@@ -25,7 +25,6 @@ require("syntax.comment")
 require("tools.gitsigns")
 require("tools.toggleterm")
 require("tools.hop")
-require("tools.whichkey")
 
 -- LSP
 require("lsp.setup")
