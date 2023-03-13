@@ -1,7 +1,6 @@
 local status, cmp = pcall(require, "cmp")
 if not status then
-  vim.notify("can't find cmp")
-  return
+  error("can't find cmp")
 end
 
 local formatting

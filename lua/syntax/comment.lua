@@ -1,7 +1,6 @@
 local status, comment = pcall(require, "Comment")
 if not status then
-  vim.notify("can't find Comment")
-  return
+  error("can't find Comment")
 end
 
 local default_opts = {

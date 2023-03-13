@@ -4,8 +4,7 @@ local status, mason, mason_lspconfig = pcall(function()
   return require("mason"), require("mason-lspconfig")
 end)
 if not status then
-  vim.notify("can't find mason or mason-lspconfig")
-  return
+  error("can't find mason or mason-lspconfig")
 end
 
 mason.setup({

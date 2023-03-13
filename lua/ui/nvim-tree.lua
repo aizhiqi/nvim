@@ -1,7 +1,6 @@
 local status, nvim_tree = pcall(require, "nvim-tree")
 if not status then
-  vim.notify("can't find nvim-tree")
-  return
+  error("can't find nvim-tree")
 end
 
 nvim_tree.setup({

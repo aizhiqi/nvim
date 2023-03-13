@@ -16,8 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 --  a protected call so we don't error out on first 
 local status_ok, lazy = pcall(require, "lazy")
 if not status_ok then
-  vim.notify("can't find lazy.nvim")
-  return
+  error("can't find lazy.nvim")
 end
 
 local plugins = {

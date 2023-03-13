@@ -11,6 +11,5 @@ local colorscheme = "tokyonight"
 -- nightfox
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
-  vim.notify("can't find colorscheme: " .. colorscheme .. " ！")
-  return
+  error("can't find colorscheme: " .. colorscheme .. " ！")
 end

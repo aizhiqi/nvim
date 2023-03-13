@@ -1,7 +1,6 @@
 local status, telescope = pcall(require, "telescope")
 if not status then
-  vim.notify("can't find telescope")
-  return
+  error("can't find telescope")
 end
 
 telescope.setup({

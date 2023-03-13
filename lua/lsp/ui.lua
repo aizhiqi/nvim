@@ -16,8 +16,7 @@ local status, lspkind, lspsaga, symbols_outline = pcall(function()
   return require("lspkind"), require("lspsaga"), require("symbols-outline")
 end)
 if not status then
-  vim.notify("can't find plugin kspkind or lspsaga or symbols-outline")
-  return
+  error("can't find plugin kspkind or lspsaga or symbols-outline")
 end
 
 lspkind.init({

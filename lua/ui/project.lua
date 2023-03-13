@@ -2,8 +2,7 @@
 -- eg: ~/.local/share/nvim/project_nvim/project_history
 local status, project = pcall(require, "project_nvim")
 if not status then
-  vim.notify("can't find project_nvim")
-  return
+  error("can't find project_nvim")
 end
 
 vim.g.nvim_tree_respect_buf_cwd = 1
@@ -25,7 +24,6 @@ project.setup({
 
 local status_telescope, telescope = pcall(require, "telescope")
 if not status_telescope then
-  vim.notify("can't find telescope")
-  return
+  error("can't find telescope")
 end
 pcall(telescope.load_extension, "projects")

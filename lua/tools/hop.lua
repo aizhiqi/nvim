@@ -1,7 +1,6 @@
 local status, hop = pcall(require, "hop")
 if not status then
-  vim.notify("can't find hop")
-  return
+  error("can't find hop")
 end
 
 local directions = require('hop.hint').HintDirection
