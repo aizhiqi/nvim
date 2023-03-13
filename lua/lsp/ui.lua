@@ -109,10 +109,10 @@ lspsaga.setup({
 
   -- definition
   definition = {
-    edit = "<C-c>o",
-    vsplit = "<C-c>v",
-    split = "<C-c>i",
-    tabe = "<C-c>t",
+    edit = "o",
+    vsplit = "vs",
+    split = "sp",
+    tabe = "t",
     quit = "q",
   },
 
@@ -180,8 +180,8 @@ lspsaga.setup({
     show_detail = false,
     keys = {
       edit = "e",
-      vsplit = "s",
-      split = "i",
+      vsplit = "vs",
+      split = "sp",
       tabe = "t",
       jump = "o",
       quit = "q",
@@ -279,7 +279,7 @@ trouble.setup({
     jump_close = { "o" },            -- jump to the diagnostic and close the list
     toggle_mode = "m",               -- toggle between "workspace" and "document" diagnostics mode
     toggle_preview = "P",            -- toggle auto_preview
-    hover = "K",                     -- opens a small popup with the full multiline message
+    hover = "h",                     -- opens a small popup with the full multiline message
     preview = "p",                   -- preview the diagnostic location
     close_folds = { "zC" },    -- close all folds
     open_folds = { "zO" },     -- open all folds
