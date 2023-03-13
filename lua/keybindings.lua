@@ -240,18 +240,21 @@ pluginKeys.mapLSP = function(mapbuf)
   if G.lsp_ui then
     -- rename
     -- key_map("n", "r", "<cmd>Lspsaga rename<CR>", "rename")
-    key_map("n", "r", "<cmd>lua vim.lsp.buf.rename()<CR>", "rename")
+    key_map("n", "n", "<cmd>lua vim.lsp.buf.rename()<CR>", "rename")
     key_map("n", "a", "<cmd>Lspsaga code_action<CR>", "code_action")
     key_map('n', 'd', '<cmd>Lspsaga goto_definition<CR>', "goto_definition")
+    key_map('n', 'D', '<cmd>Trouble lsp_definitions<CR>', "goto_definition")
     key_map('n', 'p', '<cmd>Lspsaga peek_definition<CR>', "peek_definition")
     key_map("n", "h", "<cmd>Lspsaga hover_doc<cr>", "hover_doc")
-    -- key_map("n", "R", "<cmd>Lspsaga lsp_finder<CR>", "lsp_finder")
+    key_map("n", "r", "<cmd>Lspsaga lsp_finder<CR>", "lsp_finder")
     key_map("n", "R", "<cmd>Trouble lsp_references<CR>", "lsp_finder")
     -- key_map("n", "]", "<cmd>Lspsaga diagnostic_jump_next<cr>", "diagnostic_jump_next")
     -- key_map("n", "[", "<cmd>Lspsaga diagnostic_jump_prev<cr>", "diagnostic_jump_prev")
     key_map("n", "i", "<cmd>Lspsaga incoming_calls<CR>", "incoming_calls")
     key_map("n", "o", "<cmd>Lspsaga outgoing_calls<CR>", "outgoing_calls")
     --key_map("n", "s", "<cmd>Lspsaga outline<CR>", "outline")
+    key_map("n", "s", "<cmd>SymbolsOutline<CR>", "outline")
+    key_map("n", "E", "<cmd>Trouble workspace_diagnostics<CR>", "diagnostics")
   else
     key_map("n", "n", "<cmd>lua vim.lsp.buf.rename()<CR>", "rename")
     key_map("n", "a", "<cmd>lua vim.lsp.buf.code_action()<CR>", "code_action")
@@ -272,8 +275,6 @@ pluginKeys.mapLSP = function(mapbuf)
     -- key_map('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
     -- key_map('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
   end
-  key_map("n", "s", "<cmd>SymbolsOutline<CR>", "outline")
-  key_map("n", "D", "<cmd>Telescope diagnostics<CR>", "diagnostics")
 end
 
 --------------------------------------------------------------------
