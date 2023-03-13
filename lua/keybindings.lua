@@ -289,10 +289,10 @@ pluginKeys.outline = function()
     toggle_preview = "K",
     rename_symbol = "r",
     code_actions = "a",
-    fold = "h",
-    unfold = "l",
-    fold_all = "W",
-    unfold_all = "E",
+    fold = "zc",
+    unfold = "zo",
+    fold_all = "zC",
+    unfold_all = "zO",
     fold_reset = "R",
   }
   return keymaps
@@ -387,6 +387,7 @@ leader_prefix = "c"
 group(helper_prefix, "terminator")
 map("n", leader_prefix, helper_prefix, "j", '<cmd>lua require("tools.toggleterm").toggleJ()<CR>', default_opt)
 map("n", leader_prefix, helper_prefix, "l", '<cmd>lua require("tools.toggleterm").toggleL()<CR>', default_opt)
+
 
 --------------------------------------------------------------------
 -- hop (move cursor)

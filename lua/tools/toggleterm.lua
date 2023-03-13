@@ -12,6 +12,15 @@ toggleterm.setup({
     end
   end,
   start_in_insert = true,
+  -- function to run on opening the terminal
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<ESC>", "<C-\\><C-n>", {noremap = true, silent = true})
+  end,
+  -- function to run on closing the terminal
+  on_close = function(term)
+    vim.cmd("startinsert!")
+  end,
 })
 
 local Terminal = require("toggleterm.terminal").Terminal
