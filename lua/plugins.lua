@@ -45,6 +45,8 @@ local plugins = {
   "LinArcX/telescope-env.nvim",
   "nvim-telescope/telescope-ui-select.nvim",
   "ahmedkhalf/project.nvim",
+  -- messages, cmdline and the popupmenu
+  {"folke/noice.nvim", dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify"}, },
   -------------- code analyze and highlight ---------------
   -- treesitter ()
   {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", },
@@ -104,6 +106,8 @@ if G.lsp_ui then
         --Please make sure you install markdown and markdown_inline parser
         { "nvim-treesitter/nvim-treesitter" } }
     },
+    -- showing diagnostics, references, telescope results, quickfix and location lists
+    "folke/trouble.nvim",
   })
 end
 

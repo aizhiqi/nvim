@@ -1,19 +1,17 @@
 require("global")
 G.lsp_ui = true
 
-
 -- base plugin
 require("basic")
 require("plugins")
-require("keybindings")
 require("colorscheme")
-require("autocmds")
 
 -- ui componets
 require("ui.nvim-tree")
 require("ui.lualine")
 require("ui.telescope")
 require("ui.project")
+require("ui.noice")
 
 -- code analyze and highlight
 require("syntax.nvim-treesitter")
@@ -33,3 +31,6 @@ require("lsp.cmp")
 -- debugger
 require("dap.vimspector")
 
+-- advance configration
+require("keybindings")
+require("autocmds")
