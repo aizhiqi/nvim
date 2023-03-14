@@ -1,5 +1,8 @@
 require("global")
+
+-- install configration
 G.lsp_ui = true
+G.colorscheme = false
 
 -- base plugin
 require("basic")

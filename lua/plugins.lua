@@ -26,14 +26,7 @@ local plugins = {
   ----------------------- colorschemes --------------------
   -- tokyonight
   "folke/tokyonight.nvim",
-  -- -- OceanicNext
-  -- "mhartington/oceanic-next",
-  -- -- nord
-  -- "shaunsingh/nord.nvim",
-  -- -- onedark
-  -- "ful1e5/onedark.nvim",
-  -- -- nightfox
-  -- "EdenEast/nightfox.nvim",
+
   ----------------------- uicomponents --------------------
   -- nvim-tree (directory tree)
   {"nvim-tree/nvim-tree.lua", dependencies = "nvim-tree/nvim-web-devicons", },
@@ -43,10 +36,10 @@ local plugins = {
   -- telescope (searcher)
   {"nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" }, },
   "LinArcX/telescope-env.nvim",
-  -- "nvim-telescope/telescope-ui-select.nvim",
   "ahmedkhalf/project.nvim",
   -- messages, cmdline and the popupmenu
   -- {"folke/noice.nvim", dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify"}, },
+
   -------------- code analyze and highlight ---------------
   -- treesitter ()
   {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", },
@@ -58,6 +51,7 @@ local plugins = {
   "numToStr/Comment.nvim",
   -- formatter
   --("mhartington/formatter.nvim")
+
   -------------------------- LSP --------------------------
   -- LSP Installer
   {"williamboman/mason.nvim" },
@@ -73,7 +67,6 @@ local plugins = {
   "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-nvim-lsp-signature-help",
   "rafamadriz/friendly-snippets",
-
   -- Lua nvim code assistant
   "folke/neodev.nvim",
   -- JSON assistant
@@ -94,6 +87,20 @@ local plugins = {
   ---- vimspector
   "puremourning/vimspector",
 }
+
+if G.colorscheme then
+  --colorscheme
+  table.insert(plugins, {
+  -- OceanicNext
+  "mhartington/oceanic-next",
+  -- nord
+  "shaunsingh/nord.nvim",
+  -- onedark
+  "ful1e5/onedark.nvim",
+  -- nightfox
+  "EdenEast/nightfox.nvim",
+  })
+end
 
 if G.lsp_ui then
     ---- UI for lsp

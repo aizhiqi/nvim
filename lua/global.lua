@@ -1,5 +1,6 @@
 G = {
-  lsp_ui = false
+  lsp_ui = false,
+  colorscheme = false
 }
 
 function G.log(...)
