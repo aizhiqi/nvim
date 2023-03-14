@@ -11,7 +11,7 @@ require("ui.nvim-tree")
 require("ui.lualine")
 require("ui.telescope")
 require("ui.project")
-require("ui.noice")
+--require("ui.noice")
 
 -- code analyze and highlight
 require("syntax.nvim-treesitter")

@@ -36,7 +36,7 @@ autocmd("FileType", {
       vim.cmd("edit " .. vim.fn.bufname())
 
     elseif vim.bo.filetype == "json" then
-      require("lsp.setup").setup("schemastore")
+      require("lsp.setup").setup("jsonls", require("lsp.config.json").settings)
       vim.notify("lsp schemastore loaded")
       -- reload current buffer
       vim.cmd("edit " .. vim.fn.bufname())
