@@ -68,7 +68,7 @@ lspsaga.setup({
   -- ui
   ui = {
     title = true,
-    border = "single",
+    border = "rounded",
     winblend = 0,
     expand = "",
     collapse = "",
