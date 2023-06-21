@@ -52,6 +52,11 @@ autocmd("FileType", {
       vim.notify("lsp bashls loaded")
       -- reload current buffer
       vim.cmd("edit " .. vim.fn.bufname())
+    elseif vim.bo.filetype == "dart" then
+      require("lsp.setup").flutter_setup()
+      vim.notify("lsp flutter-tools loaded")
+      -- reload current buffer
+      vim.cmd("edit " .. vim.fn.bufname())
     else
 
     end

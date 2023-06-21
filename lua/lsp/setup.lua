@@ -77,6 +77,31 @@ function Lsp.rust_setup()
   }
 end
 
+function Lsp.flutter_setup()
+  require("flutter-tools").setup {
+    lsp = {
+      color = {
+        enabled = false,      -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
+        background = false,   -- highlight the background
+        background_color = nil, -- required, when background is transparent (i.e. background_color = { r = 19, g = 17, b = 24},)
+        foreground = false,   -- highlight the foreground
+        virtual_text = true,  -- show the highlight using virtual text
+        virtual_text_str = "■", -- the virtual text character to highlight
+      },
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        showTodos = true,
+        completeFunctionCalls = true,
+        --analysisExcludedFolders = {"<path-to-flutter-sdk-packages>"},
+        renameFilesWithClasses = "prompt", -- "always"
+        enableSnippets = true,
+        updateImportsOnRename = true,    -- Whether to update imports and other directives when files are renamed. Required for `FlutterRename` command.
+      }
+    }
+  }
+end
+
 function Lsp.setup(server_name, settings)
   require("lspconfig")[server_name].setup {
     on_attach = on_attach,

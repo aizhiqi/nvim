@@ -73,6 +73,12 @@ local plugins = {
   "b0o/schemastore.nvim",
   -- Rust assistant
   "simrat39/rust-tools.nvim",
+  -- flutter
+  {'akinsho/flutter-tools.nvim',
+   dependencies = {
+       'nvim-lua/plenary.nvim',
+       'stevearc/dressing.nvim', -- optional for vim.ui.select
+   },},
 
   ------------------------- Tools -------------------------
   -- git
