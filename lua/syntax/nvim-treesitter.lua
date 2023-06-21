@@ -6,8 +6,7 @@ end
 treesitter.setup({
   -- Install language parser
   -- :TSInstallInfo show the languages have been supported
-  ensure_installed = { "rust", "awk", "c_sharp", "bash", "c", "cpp", "lua", "vim", "json", "help", "markdown", "markdown_inline" },
-  -- ensure_installed = "maintained",
+  ensure_installed = { "rust", "awk", "c_sharp", "bash", "c", "cpp", "lua", "vim", "json", "markdown", "markdown_inline" },
 
   -- enable code highlight
   highlight = {
