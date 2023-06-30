@@ -27,3 +27,9 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- don't auto fold code
 -- -- https://stackoverflow.com/questions/8316139/how-to-set-the-default-to-unfolded-when-you-open-a-file
 vim.opt.foldlevel = 99
+
+-- use clang if exist (possibly better compatibility under Windows)
+local status, treesitter = pcall(require, "nvim-treesitter.install")
+if not status then
+  treesitter.compilers = { "clang", "cc", "gcc", "cl", "zig" }
+end
