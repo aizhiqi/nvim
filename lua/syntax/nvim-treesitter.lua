@@ -29,7 +29,4 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
 
 -- use clang if exist (possibly better compatibility under Windows)
-local status, treesitter = pcall(require, "nvim-treesitter.install")
-if not status then
-  treesitter.compilers = { "clang", "cc", "gcc", "cl", "zig" }
-end
+require 'nvim-treesitter.install'.compilers = { "clang", "cc", "gcc", "cl", "zig" }
