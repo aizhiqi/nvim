@@ -25,40 +25,33 @@ autocmd("FileType", {
     if vim.bo.filetype == "cpp" then
       require("lsp.setup").setup("clangd");
       vim.notify("lsp clangd started")
-      -- reload current buffer
-      vim.cmd("edit " .. vim.fn.bufname())
-
     elseif vim.bo.filetype == "lua" then
       require("lsp.setup").setup("lua_ls", require("lsp.config.lua").settings)
       require("neodev").setup({})
       vim.notify("lsp lua_ls started and plugin neodev loaded")
-      -- reload current buffer
-      vim.cmd("edit " .. vim.fn.bufname())
 
     elseif vim.bo.filetype == "json" then
       require("lsp.setup").setup("jsonls", require("lsp.config.json").settings)
       vim.notify("lsp schemastore loaded")
-      -- reload current buffer
-      vim.cmd("edit " .. vim.fn.bufname())
 
     elseif vim.bo.filetype == "rust" then
       require("lsp.setup").rust_setup()
       vim.notify("lsp rust-tools loaded")
-      -- reload current buffer
-      vim.cmd("edit " .. vim.fn.bufname())
 
     elseif vim.bo.filetype == "sh" then
       require("lsp.setup").setup("bashls")
       vim.notify("lsp bashls loaded")
-      -- reload current buffer
-      vim.cmd("edit " .. vim.fn.bufname())
     elseif vim.bo.filetype == "dart" then
       require("lsp.setup").flutter_setup()
       vim.notify("lsp flutter-tools loaded")
-      -- reload current buffer
-      vim.cmd("edit " .. vim.fn.bufname())
+    elseif vim.bo.filetype == "cs" then
+      require("lsp.setup").setup("csharp_ls");
+      vim.notify("lsp csharp_ls loaded")
     else
-
+      return
     end
+
+    -- reload current buffer
+    vim.cmd("edit " .. vim.fn.bufname())
   end
 })
