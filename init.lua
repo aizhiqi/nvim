@@ -37,3 +37,6 @@ require("dap.vimspector")
 require("keybindings")
 require("autocmds")
 require("colorscheme")
+
+--
+require("utils.fix-yank")
