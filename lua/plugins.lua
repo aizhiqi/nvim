@@ -42,7 +42,7 @@ local plugins = {
 
   -------------- code analyze and highlight ---------------
   -- treesitter ()
-  {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", },
+  {"nvim-treesitter/nvim-treesitter", tag="v0.9.1", run = ":TSUpdate", },
   -- indent-blankline
   "lukas-reineke/indent-blankline.nvim",
   -- nvim-autopairs
@@ -51,6 +51,10 @@ local plugins = {
   "numToStr/Comment.nvim",
   -- formatter
   --("mhartington/formatter.nvim")
+  --symbols-outline
+  "simrat39/symbols-outline.nvim",
+  -- showing diagnostics, references, telescope results, quickfix and location lists
+  "folke/trouble.nvim",
 
   -------------------------- LSP --------------------------
   -- LSP Installer
@@ -79,7 +83,6 @@ local plugins = {
        'nvim-lua/plenary.nvim',
        'stevearc/dressing.nvim', -- optional for vim.ui.select
    },},
-
   ------------------------- Tools -------------------------
   -- git
   "lewis6991/gitsigns.nvim",
@@ -111,7 +114,6 @@ end
 if G.lsp_ui then
     ---- UI for lsp
   table.insert(plugins, {
-    "simrat39/symbols-outline.nvim",
     "onsails/lspkind-nvim",
     {
       "glepnir/lspsaga.nvim",
@@ -120,8 +122,6 @@ if G.lsp_ui then
         --Please make sure you install markdown and markdown_inline parser
         { "nvim-treesitter/nvim-treesitter" } }
     },
-    -- showing diagnostics, references, telescope results, quickfix and location lists
-    "folke/trouble.nvim",
   })
 end
 

@@ -3,6 +3,8 @@ if not status then
   error("can't find nvim-treesitter")
 end
 
+require 'nvim-treesitter.install'.compilers = { "clang", "gcc" }
+
 treesitter.setup({
   -- Install language parser
   -- :TSInstallInfo show the languages have been supported

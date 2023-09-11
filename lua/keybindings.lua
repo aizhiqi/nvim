@@ -307,25 +307,23 @@ end
 
 --------------------------------------------------------------------
 -- outline
-if G.lsp_ui then
-  pluginKeys.outline = function()
-    local keymaps = {
-      -- These keymaps can be a string or a table for multiple keys
-      close = { "<Esc>", "q" },
-      goto_location = "<Cr>",
-      focus_location = "o",
-      hover_symbol = "<C-space>",
-      toggle_preview = "K",
-      rename_symbol = "r",
-      code_actions = "a",
-      fold = "zc",
-      unfold = "zo",
-      fold_all = "zC",
-      unfold_all = "zO",
-      fold_reset = "R",
-    }
-    return keymaps
-  end
+pluginKeys.outline = function()
+  local keymaps = {
+    -- These keymaps can be a string or a table for multiple keys
+    close = { "<Esc>", "q" },
+    goto_location = "<Cr>",
+    focus_location = "o",
+    hover_symbol = "<C-space>",
+    toggle_preview = "K",
+    rename_symbol = "r",
+    code_actions = "a",
+    fold = "zc",
+    unfold = "zo",
+    fold_all = "zC",
+    unfold_all = "zO",
+    fold_reset = "R",
+  }
+  return keymaps
 end
 
 --------------------------------------------------------------------

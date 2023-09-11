@@ -45,8 +45,10 @@ autocmd("FileType", {
       require("lsp.setup").flutter_setup()
       vim.notify("lsp flutter-tools loaded")
     elseif vim.bo.filetype == "cs" then
-      require("lsp.setup").setup("csharp_ls");
-      vim.notify("lsp csharp_ls loaded")
+      -- require("lsp.setup").setup("csharp_ls");
+      -- vim.notify("lsp csharp_ls loaded")
+      require("lsp.setup").setup("omnisharp");
+      vim.notify("lsp omnisharp loaded")
     else
       return
     end

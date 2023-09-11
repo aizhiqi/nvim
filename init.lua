@@ -1,7 +1,7 @@
 require("global")
 
 -- install configration
-G.lsp_ui = true
+G.lsp_ui = false
 G.colorscheme = false
 
 -- base plugin (require nothing)
@@ -20,6 +20,7 @@ require("syntax.nvim-treesitter")
 require("syntax.indent-blankline")
 require("syntax.nvim-autopairs")
 require("syntax.comment")
+require("syntax.outline")
 
 -- Tools
 require("tools.gitsigns")
