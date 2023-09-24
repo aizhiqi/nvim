@@ -25,7 +25,6 @@ nvim_tree.setup({
   view = {
     width = 34,
     side = "left",
-    hide_root_folder = false,
     --mappings = {
     --  custom_only = true,
     --  list = list_keys,
