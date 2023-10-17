@@ -1,45 +1,34 @@
-local status, indent_blankline = pcall(require, "indent_blankline")
+local status, indent_blankline = pcall(require, "ibl")
 if not status then
   error("can't find indent_blankline")
 end
 
+local highlight = {
+    "RainbowRed",
+    "RainbowYellow",
+    "RainbowBlue",
+    "RainbowOrange",
+    "RainbowGreen",
+    "RainbowViolet",
+    "RainbowCyan",
+}
+
+local hooks = require "ibl.hooks"
+hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+    vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+    vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+    vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+    vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+    vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+    vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+    vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+end)
+
 indent_blankline.setup({
-  -- how to show bankline
-  space_char_blankline = " ",
-  -- use treesitter judge auto suggestion
-  show_current_context = true,
-  show_current_context_start = true,
-  context_patterns = {
-    "class",
-    "function",
-    "method",
-    "element",
-    "^if",
-    "^while",
-    "^for",
-    "^object",
-    "^table",
-    "block",
-    "arguments",
-  },
-  -- echo &filetype
-  filetype_exclude = {
-    "null-ls-info",
-    "dashboard",
-    "packer",
-    "terminal",
-    "help",
-    "log",
-    "markdown",
-    "TelescopePrompt",
-    "lsp-installer",
-    "lspinfo",
-    "toggleterm",
-  },
-  -- how to show '|'
-  -- char = '¦'
-  -- char = '┆'
-  -- char = '│'
-  -- char = "⎸",
-  char = "▏",
+    indent = { highlight = highlight, char = "▏" },
+    whitespace = {
+        highlight = highlight,
+        remove_blankline_trail = false,
+    },
+    scope = { enabled = false },
 })
