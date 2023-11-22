@@ -1,7 +1,7 @@
 require("global")
 
 -- install configration
-G.lsp_ui = false
+G.lsp_ui = true
 G.colorscheme = false
 
 -- base plugin (require nothing)
@@ -16,7 +16,7 @@ require("ui.project")
 require("ui.tokynight")
 
 -- code analyze and highlight
-require("syntax.nvim-treesitter")
+-- require("syntax.nvim-treesitter")
 require("syntax.indent-blankline")
 require("syntax.nvim-autopairs")
 require("syntax.comment")
