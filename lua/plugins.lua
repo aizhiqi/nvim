@@ -114,7 +114,7 @@ end
 if G.lsp_ui then
     ---- UI for lsp
   table.insert(plugins, {
-    "jinzhongjia/LspUI.nvim",
+    "nvimdev/lspsaga.nvim",
     "onsails/lspkind-nvim"
   })
 end

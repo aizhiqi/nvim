@@ -1,9 +1,9 @@
 -- lspkind && lspUI && outline
 local status, lspkind, lspui = pcall(function()
-  return require("lspkind"), require("LspUI")
+  return require("lspkind"), require("lspsaga")
 end)
 if not status then
-  error("can't find plugin kspkind, lspui")
+  error("can't find plugin kspkind, lspsaga")
 end
 
 lspkind.init({
