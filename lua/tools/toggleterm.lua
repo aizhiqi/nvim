@@ -16,7 +16,7 @@ toggleterm.setup({
   on_open = function(term)
     vim.cmd("startinsert!")
     vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<ESC>", "<C-\\><C-n>", {noremap = true, silent = true})
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "i<CR>exit<CR>", {noremap = true, silent = true})
     vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<ESC>", "<cmd>close<CR>", {noremap = true, silent = true})
   end,
   -- function to run on closing the terminal
