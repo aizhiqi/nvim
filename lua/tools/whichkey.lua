@@ -5,12 +5,15 @@ end
 
 
 which_key.setup({
+  triggers = {
+    { "\\", mode = { "n", "v" } },
+  }
 })
 
 return {
   register = function(mode, key, cmd, opt)
     which_key.add({
-      { key, cmd, desc = opt.desc or cmd, buffer = opt.buffer, noremap = opt.noremap, slient = opt.slient, nowait = opt.nowait, mode = mode},
+      { key, cmd, desc = opt.desc or cmd, buffer = opt.buffer, noremap = opt.noremap, slient = opt.slient, nowait = opt.nowait, mode = mode },
     })
   end,
 
