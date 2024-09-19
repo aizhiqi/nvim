@@ -49,6 +49,9 @@ autocmd("FileType", {
       -- vim.notify("lsp csharp_ls loaded")
       require("lsp.setup").setup("omnisharp");
       vim.notify("lsp omnisharp loaded")
+    elseif vim.bo.filetype == "xml" then
+      require("lsp.setup").setup("lemminx");
+      vim.notify("lsp lemminx loaded")
     else
       return
     end
