@@ -42,7 +42,7 @@ local plugins = {
 
   -------------- code analyze and highlight ---------------
   -- treesitter ()
-  {"nvim-treesitter/nvim-treesitter", tag="v0.9.1", run = ":TSUpdate", },
+  {"nvim-treesitter/nvim-treesitter", },
   -- indent-blankline
   "lukas-reineke/indent-blankline.nvim",
   -- nvim-autopairs
