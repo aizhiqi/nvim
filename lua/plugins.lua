@@ -87,7 +87,6 @@ local plugins = {
   -- git
   "lewis6991/gitsigns.nvim",
   -- toggle term
-  {"phaazon/hop.nvim", branch = "v2" },
   "akinsho/toggleterm.nvim",
   -- key
   "folke/which-key.nvim",

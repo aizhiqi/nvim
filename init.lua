@@ -25,7 +25,6 @@ require("syntax.outline")
 -- Tools
 require("tools.gitsigns")
 require("tools.toggleterm")
-require("tools.hop")
 
 -- LSP
 require("lsp.setup")

@@ -420,16 +420,4 @@ map("n", leader_prefix, helper_prefix, "j", '<cmd>lua require("tools.toggleterm"
 map("n", leader_prefix, helper_prefix, "l", '<cmd>lua require("tools.toggleterm").toggleL()<CR>', default_opt)
 
 
---------------------------------------------------------------------
--- hop (move cursor)
-group("z", "move cursor (hop)")
-map("n", nil, nil, "zk", "<cmd>HopLineBC<CR>", default_opt)
-map("v", nil, nil, "zk", "<cmd>HopLineBC<CR>", default_opt)
-map("n", nil, nil, "zj", "<cmd>HopLineAC<CR>", default_opt)
-map("v", nil, nil, "zj", "<cmd>HopLineAC<CR>", default_opt)
-map("n", nil, nil, "zh", "<cmd>HopWordCurrentLineBC<CR>", default_opt)
-map("v", nil, nil, "zh", "<cmd>HopWordCurrentLineBC<CR>", default_opt)
-map("n", nil, nil, "zl", "<cmd>HopWordCurrentLineAC<CR>", default_opt)
-map("v", nil, nil, "zl", "<cmd>HopWordCurrentLineAC<CR>", default_opt)
-
 return pluginKeys
