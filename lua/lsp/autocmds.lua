@@ -25,6 +25,7 @@ autocmd("FileType", {
     if vim.bo.filetype == "cpp" then
       require("lsp.setup").setup("clangd");
       vim.notify("lsp clangd started")
+
     elseif vim.bo.filetype == "lua" then
       require("lsp.setup").setup("lua_ls", require("lsp.config.lua").settings)
       require("neodev").setup({})
@@ -41,17 +42,21 @@ autocmd("FileType", {
     elseif vim.bo.filetype == "sh" then
       require("lsp.setup").setup("bashls")
       vim.notify("lsp bashls loaded")
+
     elseif vim.bo.filetype == "dart" then
       require("lsp.setup").flutter_setup()
       vim.notify("lsp flutter-tools loaded")
+
     elseif vim.bo.filetype == "cs" then
       -- require("lsp.setup").setup("csharp_ls");
       -- vim.notify("lsp csharp_ls loaded")
       require("lsp.setup").setup("omnisharp");
       vim.notify("lsp omnisharp loaded")
+
     elseif vim.bo.filetype == "xml" then
       require("lsp.setup").setup("lemminx");
       vim.notify("lsp lemminx loaded")
+
     else
       return
     end
