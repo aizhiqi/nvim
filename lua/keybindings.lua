@@ -246,10 +246,6 @@ pluginKeys.comment = {
     block = "gcb",
   },
 }
-map("n", nil, helper_prefix, "c", "gc", { desc = "comment code", noremap = false })
-map("v", nil, helper_prefix, "c", "gc", { desc = "comment code", noremap = false })
-map("n", nil, helper_prefix, "cb", "gcb", { desc = "comment code", noremap = false })
-map("v", nil, helper_prefix, "cb", "gcb", { desc = "comment code", noremap = false })
 
 -- lsp keybindings in callback function
 pluginKeys.mapLSP = function(mapbuf)
