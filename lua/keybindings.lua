@@ -104,7 +104,7 @@ helper_prefix = "e"
 leader_prefix = ""
 group(helper_prefix, "explorer (nvim-tree)")
 map("n", leader_prefix, helper_prefix, "e", "<cmd>NvimTreeToggle<CR>",
-{ desc = "explorer (nvim-tree)", noremap = true, silent = true })
+  { desc = "explorer (nvim-tree)", noremap = true, silent = true })
 pluginKeys.nvimTreeList = function(bufnr)
   helper_prefix = "e"
   local api = require('nvim-tree.api')
@@ -119,82 +119,82 @@ pluginKeys.nvimTreeList = function(bufnr)
   end
   -- BEGIN_DEFAULT_ON_ATTACH
   key_map('n', '<C-]>', api.tree.change_root_to_node, '<cmd>lua require("nvim-tree.api").tree.change_root_to_node()<CR>',
-  'CD')
+    'CD')
   key_map('n', '<C-e>', api.node.open.replace_tree_buffer,
-  '<cmd>lua require("nvim-tree.api").node.open.replace_tree_buffer()<CR>', 'Open: In Place')
+    '<cmd>lua require("nvim-tree.api").node.open.replace_tree_buffer()<CR>', 'Open: In Place')
   key_map('n', 'h', api.node.show_info_popup, '<cmd>lua require("nvim-tree.api").node.show_info_popup()<CR>', 'Info')
   key_map('n', '<C-r>', api.fs.rename_sub, '<cmd>lua require("nvim-tree.api").fs.rename_sub()<CR>',
-  'Rename: Omit Filename')
+    'Rename: Omit Filename')
   key_map('n', 't', api.node.open.tab, '<cmd>lua require("nvim-tree.api").node.open.tab()<CR>', 'Open: New Tab')
   key_map('n', 'vs', api.node.open.vertical, '<cmd>lua require("nvim-tree.api").node.open.vertical()<CR>',
-  'Open: Vertical Split')
+    'Open: Vertical Split')
   key_map('n', 'sp', api.node.open.horizontal, '<cmd>lua require("nvim-tree.api").node.open.horizontal()<CR>',
-  'Open: Horizontal Split')
+    'Open: Horizontal Split')
   key_map('n', '<BS>', api.node.navigate.parent_close,
-  '<cmd>lua require("nvim-tree.api").node.navigate.parent_close()<CR>', 'Close Directory')
+    '<cmd>lua require("nvim-tree.api").node.navigate.parent_close()<CR>', 'Close Directory')
   key_map('n', '<CR>', api.node.open.edit, '<cmd>lua require("nvim-tree.api").node.open.edit()<CR>', 'Open')
   key_map('n', '<Tab>', api.node.open.preview, '<cmd>lua require("nvim-tree.api").node.open.preview()<CR>',
-  'Open Preview')
+    'Open Preview')
   --key_map('n', '>',     api.node.navigate.sibling.next,        '<cmd>lua require("nvim-tree.api").node.navigate.sibling.next()<CR>',       'Next Sibling')
   --key_map('n', '<',     api.node.navigate.sibling.prev,        '<cmd>lua require("nvim-tree.api").node.navigate.sibling.prev()<CR>',       'Previous Sibling')
   key_map('n', '.', api.node.run.cmd, '<cmd>lua require("nvim-tree.api").node.run.cmd()<CR>', 'Run Command')
   key_map('n', '-', api.tree.change_root_to_parent, '<cmd>lua require("nvim-tree.api").tree.change_root_to_parent()<CR>',
-  'Up')
+    'Up')
   key_map('n', 'a', api.fs.create, '<cmd>lua require("nvim-tree.api").fs.create()<CR>', 'Create')
   key_map('n', 'bmv', api.marks.bulk.move, '<cmd>lua require("nvim-tree.api").marks.bulk.move()<CR>', 'Move Bookmarked')
   key_map('n', 'B', api.tree.toggle_no_buffer_filter,
-  '<cmd>lua require("nvim-tree.api").tree.toggle_no_buffer_filter()<CR>', 'Toggle No Buffer')
+    '<cmd>lua require("nvim-tree.api").tree.toggle_no_buffer_filter()<CR>', 'Toggle No Buffer')
   key_map('n', 'c', api.fs.copy.node, '<cmd>lua require("nvim-tree.api").fs.copy.node()<CR>', 'Copy')
   key_map('n', 'C', api.tree.toggle_git_clean_filter,
-  '<cmd>lua require("nvim-tree.api").tree.toggle_git_clean_filter()<CR>', 'Toggle Git Clean')
+    '<cmd>lua require("nvim-tree.api").tree.toggle_git_clean_filter()<CR>', 'Toggle Git Clean')
   key_map('n', '[c', api.node.navigate.git.prev, '<cmd>lua require("nvim-tree.api").node.navigate.git.prev()<CR>',
-  'Prev Git')
+    'Prev Git')
   key_map('n', ']c', api.node.navigate.git.next, '<cmd>lua require("nvim-tree.api").node.navigate.git.next()<CR>',
-  'Next Git')
+    'Next Git')
   key_map('n', 'd', api.fs.remove, '<cmd>lua require("nvim-tree.api").fs.remove()<CR>', 'Delete')
   key_map('n', 'D', api.fs.trash, '<cmd>lua require("nvim-tree.api").fs.trash()<CR>', 'Trash')
   key_map('n', 'E', api.tree.expand_all, '<cmd>lua require("nvim-tree.api").tree.expand_all()<CR>', 'Expand All')
   key_map('n', 'e', api.fs.rename_basename, '<cmd>lua require("nvim-tree.api").fs.rename_basename()<CR>',
-  'Rename: Basename')
+    'Rename: Basename')
   key_map('n', ']e', api.node.navigate.diagnostics.next,
-  '<cmd>lua require("nvim-tree.api").node.navigate.diagnostics.next()<CR>', 'Next Diagnostic')
+    '<cmd>lua require("nvim-tree.api").node.navigate.diagnostics.next()<CR>', 'Next Diagnostic')
   key_map('n', '[e', api.node.navigate.diagnostics.prev,
-  '<cmd>lua require("nvim-tree.api").node.navigate.diagnostics.prev()<CR>', 'Prev Diagnostic')
+    '<cmd>lua require("nvim-tree.api").node.navigate.diagnostics.prev()<CR>', 'Prev Diagnostic')
   key_map('n', 'F', api.live_filter.clear, '<cmd>lua require("nvim-tree.api").live_filter.clear()<CR>', 'Clean Filter')
   key_map('n', 'f', api.live_filter.start, '<cmd>lua require("nvim-tree.api").live_filter.start()<CR>', 'Filter')
   key_map('n', 'g?', api.tree.toggle_help, '<cmd>lua require("nvim-tree.api").tree.toggle_help()<CR>', 'Help')
   key_map('n', 'gy', api.fs.copy.absolute_path, '<cmd>lua require("nvim-tree.api").fs.copy.absolute_path()<CR>',
-  'Copy Absolute Path')
+    'Copy Absolute Path')
   key_map('n', 'H', api.tree.toggle_hidden_filter, '<cmd>lua require("nvim-tree.api").tree.toggle_hidden_filter()<CR>',
-  'Toggle Dotfiles')
+    'Toggle Dotfiles')
   key_map('n', 'I', api.tree.toggle_gitignore_filter,
-  '<cmd>lua require("nvim-tree.api").tree.toggle_gitignore_filter()<CR>', 'Toggle Git Ignore')
+    '<cmd>lua require("nvim-tree.api").tree.toggle_gitignore_filter()<CR>', 'Toggle Git Ignore')
   key_map('n', 'J', api.node.navigate.sibling.last, '<cmd>lua require("nvim-tree.api").node.navigate.sibling.last()<CR>',
-  'Last Sibling')
+    'Last Sibling')
   key_map('n', 'K', api.node.navigate.sibling.first,
-  '<cmd>lua require("nvim-tree.api").node.navigate.sibling.first()<CR>', 'First Sibling')
+    '<cmd>lua require("nvim-tree.api").node.navigate.sibling.first()<CR>', 'First Sibling')
   key_map('n', 'm', api.marks.toggle, '<cmd>lua require("nvim-tree.api").marks.toggle()<CR>', 'Toggle Bookmark')
   key_map('n', 'o', api.node.open.edit, '<cmd>lua require("nvim-tree.api").node.open.edit()<CR>', 'Open')
   key_map('n', 'O', api.node.open.no_window_picker, '<cmd>lua require("nvim-tree.api").node.open.no_window_picker()<CR>',
-  'Open: No Window Picker')
+    'Open: No Window Picker')
   key_map('n', 'p', api.fs.paste, '<cmd>lua require("nvim-tree.api").fs.paste()<CR>', 'Paste')
   key_map('n', 'P', api.node.navigate.parent, '<cmd>lua require("nvim-tree.api").node.navigate.parent()<CR>',
-  'Parent Directory')
+    'Parent Directory')
   key_map('n', 'q', api.tree.close, '<cmd>lua require("nvim-tree.api").tree.close()<CR>', 'Close')
   key_map('n', 'r', api.fs.rename, '<cmd>lua require("nvim-tree.api").fs.rename()<CR>', 'Rename')
   key_map('n', 'R', api.tree.reload, '<cmd>lua require("nvim-tree.api").tree.reload()<CR>', 'Refresh')
   key_map('n', 's', api.node.run.system, '<cmd>lua require("nvim-tree.api").node.run.system()<CR>', 'Run System')
   key_map('n', 'S', api.tree.search_node, '<cmd>lua require("nvim-tree.api").tree.search_node()<CR>', 'Search')
   key_map('n', 'U', api.tree.toggle_custom_filter, '<cmd>lua require("nvim-tree.api").tree.toggle_custom_filter()<CR>',
-  'Toggle Hidden')
+    'Toggle Hidden')
   key_map('n', 'W', api.tree.collapse_all, '<cmd>lua require("nvim-tree.api").tree.collapse_all()<CR>', 'Collapse')
   key_map('n', 'x', api.fs.cut, '<cmd>lua require("nvim-tree.api").fs.cut()<CR>', 'Cut')
   key_map('n', 'y', api.fs.copy.filename, '<cmd>lua require("nvim-tree.api").fs.copy.filename()<CR>', 'Copy Name')
   key_map('n', 'Y', api.fs.copy.relative_path, '<cmd>lua require("nvim-tree.api").fs.copy.relative_path()<CR>',
-  'Copy Relative Path')
+    'Copy Relative Path')
   key_map('n', '<2-LeftMouse>', api.node.open.edit, '<cmd>lua require("nvim-tree.api").node.open.edit()<CR>', 'Open')
   key_map('n', '<2-RightMouse>', api.tree.change_root_to_node,
-  '<cmd>lua require("nvim-tree.api").tree.change_root_to_node()<CR>', 'CD')
+    '<cmd>lua require("nvim-tree.api").tree.change_root_to_node()<CR>', 'CD')
 end
 
 --------------------------------------------------------------------
@@ -215,7 +215,7 @@ map("n", leader_prefix, helper_prefix, "p", "<cmd>Telescope projects<CR>", defau
 map("n", leader_prefix, helper_prefix, "o", "<cmd>Telescope oldfiles<CR>", default_opt)
 map("n", leader_prefix, helper_prefix, "k", "<cmd>Telescope keymaps<CR>", default_opt)
 map("n", leader_prefix, helper_prefix, "t", "<cmd>lua require('ui.telescope').launch_workspace_symbols()<CR>",
-default_opt)
+  default_opt)
 pluginKeys.telescopeList = {
   i = {
     ["<C-j>"] = "move_selection_next",
@@ -246,6 +246,11 @@ pluginKeys.comment = {
     block = "gcb",
   },
 }
+map("n", leader_prefix, helper_prefix, "c", "gc", { desc = "comment code", noremap = false })
+map("v", leader_prefix, helper_prefix, "c", "gc", { desc = "comment code", noremap = false })
+map("n", leader_prefix, helper_prefix, "cb", "gcb", { desc = "comment code", noremap = false })
+map("v", leader_prefix, helper_prefix, "cb", "gcb", { desc = "comment code", noremap = false })
+
 
 -- lsp keybindings in callback function
 pluginKeys.mapLSP = function(mapbuf)
@@ -291,17 +296,17 @@ pluginKeys.mapLSP = function(mapbuf)
     key_map("n", "E", "<cmd>Trouble workspace_diagnostics<CR>", "diagnostics")
   end
   key_map("n", "f", "<cmd>lua vim.lsp.buf.format()<CR>", "format")
-    -- key_map("n", "s", "<cmd>lua vim.lsp.buf.outline()<CR>", "outline")
-    -- key_map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
-    --
-    -- key_map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
-    -- key_map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
-    -- key_map('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
-    -- key_map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opt)
-    -- key_map('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
-    -- key_map('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
-    -- key_map('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
-    -- key_map('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
+  -- key_map("n", "s", "<cmd>lua vim.lsp.buf.outline()<CR>", "outline")
+  -- key_map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", opt)
+  --
+  -- key_map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
+  -- key_map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
+  -- key_map('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
+  -- key_map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opt)
+  -- key_map('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
+  -- key_map('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
+  -- key_map('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
+  -- key_map('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
 end
 
 --------------------------------------------------------------------
