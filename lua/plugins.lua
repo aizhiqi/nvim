@@ -57,7 +57,7 @@ local plugins = {
   {"folke/trouble.nvim",
    dependencies = {
     "nvim-tree/nvim-web-devicons",
-    'stevearc/dressing.nvim', -- optional for vim.ui.select
+    'stevearc/dressing.nvim',
    },},
 
   -------------------------- LSP --------------------------
@@ -80,12 +80,12 @@ local plugins = {
   -- JSON assistant
   "b0o/schemastore.nvim",
   -- Rust assistant
-  "mrcjkb/rustaceanvim",
+  "simrat39/rust-tools.nvim",
   -- flutter
   {'akinsho/flutter-tools.nvim',
    dependencies = {
        'nvim-lua/plenary.nvim',
-       'stevearc/dressing.nvim', -- optional for vim.ui.select
+       'stevearc/dressing.nvim',
    },},
   ------------------------- Tools -------------------------
   -- git
@@ -121,7 +121,11 @@ end
 if G.lsp_ui then
     ---- UI for lsp
   table.insert(plugins, {
-    "nvimdev/lspsaga.nvim",
+    { "nvimdev/lspsaga.nvim",
+    dependencies = {
+        'nvim-treesitter/nvim-treesitter',
+        'nvim-tree/nvim-web-devicons',
+    },},
     "onsails/lspkind-nvim"
   })
 end
