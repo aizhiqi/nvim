@@ -54,7 +54,11 @@ local plugins = {
   --symbols-outline
   "simrat39/symbols-outline.nvim",
   -- showing diagnostics, references, telescope results, quickfix and location lists
-  "folke/trouble.nvim",
+  {"folke/trouble.nvim",
+   dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    'stevearc/dressing.nvim', -- optional for vim.ui.select
+   },},
 
   -------------------------- LSP --------------------------
   -- LSP Installer
@@ -72,11 +76,11 @@ local plugins = {
   "hrsh7th/cmp-nvim-lsp-signature-help",
   "rafamadriz/friendly-snippets",
   -- Lua nvim code assistant
-  "folke/neodev.nvim",
+  "folke/lazydev.nvim",
   -- JSON assistant
   "b0o/schemastore.nvim",
   -- Rust assistant
-  "simrat39/rust-tools.nvim",
+  "mrcjkb/rustaceanvim",
   -- flutter
   {'akinsho/flutter-tools.nvim',
    dependencies = {
@@ -89,7 +93,11 @@ local plugins = {
   -- toggle term
   "akinsho/toggleterm.nvim",
   -- key
-  "folke/which-key.nvim",
+  {"folke/which-key.nvim",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    "echasnovski/mini.icons"
+  },},
 
   ---------------------- debugger -------------------------
   ---- vimspector
