@@ -16,7 +16,7 @@ require("ui.project")
 require("ui.tokynight")
 
 -- code analyze and highlight
--- require("syntax.nvim-treesitter")
+require("syntax.nvim-treesitter")
 require("syntax.indent-blankline")
 require("syntax.nvim-autopairs")
 require("syntax.comment")
