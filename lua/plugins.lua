@@ -28,8 +28,10 @@ local plugins = {
   "folke/tokyonight.nvim",
 
   ----------------------- uicomponents --------------------
+  -- welcome page
+  {"goolord/alpha-nvim", dependencies = { "nvim-tree/nvim-web-devicons" }, },
   -- nvim-tree (directory tree)
-  {"nvim-tree/nvim-tree.lua", dependencies = "nvim-tree/nvim-web-devicons", },
+  {"nvim-tree/nvim-tree.lua", dependencies = { "nvim-tree/nvim-web-devicons" }, },
   -- lualine (status bar)
   {"nvim-lualine/lualine.nvim", dependencies = { "nvim-tree/nvim-web-devicons" }, },
   "arkav/lualine-lsp-progress",
@@ -37,6 +39,7 @@ local plugins = {
   {"nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" }, },
   "LinArcX/telescope-env.nvim",
   "ahmedkhalf/project.nvim",
+
   -- messages, cmdline and the popupmenu
   -- {"folke/noice.nvim", dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify"}, },
 

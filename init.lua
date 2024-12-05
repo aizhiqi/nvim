@@ -14,6 +14,7 @@ require("ui.lualine")
 require("ui.telescope")
 require("ui.project")
 require("ui.tokynight")
+require("ui.alpha-nvim")
 
 -- code analyze and highlight
 -- require("syntax.nvim-treesitter")
